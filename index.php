@@ -1,5 +1,6 @@
 <?php
-include 'php/RackNews/Report.class.php';
+include 'init.php';
+
 use \RackNews\Report as Report;
 
 $report = new Report();

@@ -1,4 +1,6 @@
 <?php
+include 'php/RackNews/Report.class.php';
+
 $script_mode = true;
 include '../inc/init.php';
 

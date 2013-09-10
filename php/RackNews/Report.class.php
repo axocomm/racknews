@@ -1,8 +1,6 @@
 <?php
 namespace RackNews;
 
-include 'Util.inc.php';
-
 class Report {
     const FORMAT_HTML = 1;
     const FORMAT_CSV = 2;
