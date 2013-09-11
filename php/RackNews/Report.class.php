@@ -180,7 +180,7 @@ class Report {
         return $out;
     }
 
-    public static function check_fields($object, $fields) {
+    private static function check_fields($object, $fields) {
         foreach ($fields as $field) {
             if (!self::has_field($object, $field)) {
                 return 0;
@@ -190,7 +190,7 @@ class Report {
         return 1;
     }
 
-    public static function has_field($object, $field) {
+    private static function has_field($object, $field) {
         if (isset($object[$field]) && ($v = $object[$field]) !== FALSE) {
             if (is_array($v)) {
                 return count($v);
