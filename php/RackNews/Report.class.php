@@ -8,21 +8,35 @@ class Report {
     const FORMAT_XML = 4;
     const FORMAT_RAW = 5;
 
-    private $rt_objects;
+    private $objects;
     private $report_objects;
     private $fields;
     private $types;
     private $format;
 
-    public function __construct() {
-        $this->rt_objects = array();
+    public function __construct($objects) {
+        $this->objects = ($objects) ? $objects : array();
         $this->report_objects = array();
         $this->fields = array();
         $this->types = array();
         $this->format = self::FORMAT_RAW;
     }
 
-    public function build_report($params = null) {
+    public function get_params() {
+        return array(
+            'fields' => $this->fields,
+            'types' => $this->types,
+            'format' => $this->format
+        );
+    }
+
+    public function set_params($params) {
+        $this->fields = isset($params['fields']) ? $params['fields'] : $this->fields;
+        $this->types = isset($params['types']) ? $params['types'] : $this->types;
+        $this->format = isset($params['format']) ? $params['format'] : $this->format;
+    }
+
+    public function build() {
         if (!$params) {
             $params = array(
                 'fields' => $this->fields,
@@ -34,8 +48,8 @@ class Report {
         var_dump($params);
     }
     
-    public function get_rt_objects() {
-        return $this->rt_objects;
+    public function get_objects() {
+        return $this->objects;
     }
 
     public function get_report_objects() {
