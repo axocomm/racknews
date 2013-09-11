@@ -70,6 +70,16 @@ class RTObject {
         return FALSE;
     }
 
+    public static function find_by_attr($objects, $k, $v) {
+        foreach ($objects as $object) {
+            if ($object[$k] == $v) {
+                return $object;
+            }
+        }
+
+        return FALSE;
+    }
+
     public static function find_by_type($objects, $type_name) {
         $out = array();
         $types = readChapter(CHAP_OBJTYPE);
