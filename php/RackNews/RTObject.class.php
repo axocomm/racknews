@@ -49,4 +49,25 @@ class RTObject {
 
         return $objects;
     }
+
+    public static function find_by_type($objects, $type_name) {
+        $out = array();
+        $types = readChapter(CHAP_OBJTYPE);
+
+        $types = array_flip(array_map('strtolower', $types));
+        $type_name = strtolower($type_name);
+
+        if (!array_key_exists($type_name, $types)) {
+            throw new \Exception("Invalid type $type_name.");
+        }
+
+        $type_id = $types[$type_name];
+        foreach ($objects as $object) {
+            if ($object['objtype_id'] == $type_id) {
+                $out[] = $object;
+            }
+        }
+
+        return $out;
+    }
 }
