@@ -35,11 +35,29 @@ class Report {
     }
 
     public function build() {
-        if (count($this->params['fields'])) {
-            foreach ($this->objects as $object) {
-                $this->report_objects[] = self::pick_fields($object, $this->params['fields']);
+        $report_objects = $this->objects;
+
+        if (count($this->params['has'])) {
+            $tmp_objects = array();
+            foreach ($report_objects as $object) {
+                if (self::check_fields($object, $this->params['has'])) {
+                    $tmp_objects[] = $object;
+                }
             }
+
+            $report_objects = $tmp_objects;
         }
+
+        if (count($this->params['fields'])) {
+            $tmp_objects = array();
+            foreach ($report_objects as $object) {
+                $tmp_objects[] = self::pick_fields($object, $this->params['fields']);
+            }
+
+            $report_objects = $tmp_objects;
+        }
+
+        $this->report_objects = $report_objects;
     }
 
     public function display() {
@@ -82,5 +100,27 @@ class Report {
         }
 
         return $out;
+    }
+
+    public static function check_fields($object, $fields) {
+        foreach ($fields as $field) {
+            if (!self::has_field($object, $field)) {
+                return 0;
+            }
+        }
+
+        return 1;
+    }
+
+    public static function has_field($object, $field) {
+        if (isset($object[$field]) && ($v = $object[$field]) !== FALSE) {
+            if (is_array($v)) {
+                return count($v);
+            } else {
+                return strlen($v);
+            }
+        }
+
+        return 0;
     }
 }
