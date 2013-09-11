@@ -2,30 +2,6 @@
 namespace RackNews;
 
 class RTObject {
-    private $name;
-    private $attrs;
-
-    public function __construct($name, $attrs) {
-        $this->name = $name;
-        $this->attrs = $attrs;
-    }
-
-    public function get_name() {
-        return $this->name;
-    }
-
-    public function get_attrs() {
-        return $this->attrs;
-    }
-
-    public function set_name($name) {
-        $this->name = $name;
-    }
-
-    public function set_attrs($attrs) {
-        $this->attrs = $attrs;
-    }
-
     public static function get_objects() {
         $rt_objects = scanRealmByText('object');
 
