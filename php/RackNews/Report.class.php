@@ -63,6 +63,22 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (count($this->params['names'])) {
+            $tmp_objects = array();
+            foreach ($this->params['names'] as $name) {
+                $tmp_objects[] = RTObject::find_by_name($objects, $name);
+            }
+
+            $objects = $tmp_objects;
+        } elseif (count($this->params['id'])) {
+            $tmp_objects = array();
+            foreach ($this->params['id'] as $id) {
+                $tmp_objects[] = RTObject::find_by_id($objects, $id);
+            }
+            
+            $objects = $tmp_objects;
+        }
+
         if (count($this->params['fields'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
