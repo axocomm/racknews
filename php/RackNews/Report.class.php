@@ -8,14 +8,14 @@ class Report {
     const FORMAT_XML = 4;
     const FORMAT_RAW = 5;
 
-    private $rt_objects;
+    private $objects;
     private $report_objects;
     private $fields;
     private $types;
     private $format;
 
-    public function __construct($rt_objects) {
-        $this->rt_objects = ($rt_objects) ? $rt_objects : array();
+    public function __construct($objects) {
+        $this->objects = ($objects) ? $objects : array();
         $this->report_objects = array();
         $this->fields = array();
         $this->types = array();
@@ -34,8 +34,8 @@ class Report {
         var_dump($params);
     }
     
-    public function get_rt_objects() {
-        return $this->rt_objects;
+    public function get_objects() {
+        return $this->objects;
     }
 
     public function get_report_objects() {
