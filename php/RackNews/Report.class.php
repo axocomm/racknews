@@ -40,14 +40,7 @@ class Report {
         $objects = $this->objects;
 
         if (isset($this->params['report'])) {
-            switch (strtolower($this->params['report'])) {
-            case 'fields':
-                $objects = RTObject::get_fields($objects);
-                break;
-            default:
-                throw new \Exception('Invalid report');
-                break;
-            }
+            $objects = $this->pre_build($objects, strtolower($this->params['report']));
         }
 
         if (count($this->params['has'])) {
@@ -134,6 +127,19 @@ class Report {
             var_dump($this->report_objects);
             break;
         }
+    }
+
+    private function pre_build($objects, $report) {
+        switch (strtolower($this->params['report'])) {
+        case 'fields':
+            $objects = RTObject::get_fields($objects);
+            break;
+        default:
+            throw new \Exception('Invalid report');
+            break;
+        }
+
+        return $objects;
     }
 
     private static function pick_fields($object, $fields) {
