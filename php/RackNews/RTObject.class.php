@@ -77,4 +77,25 @@ class RTObject {
 
         return $out;
     }
+
+    public static function get_fields($objects) {
+        if (!count($objects)) {
+            return FALSE;
+        }
+
+        $field_list = array();
+        foreach ($objects as $object) {
+            foreach (array_keys($object) as $field) {
+                $field_list[] = $field;
+            }
+        }
+
+        $fields = array();
+        $field_list = array_unique($field_list);
+        foreach ($field_list as $field) {
+            $fields[]['field'] = $field;
+        }
+
+        return $fields;
+    }
 }
