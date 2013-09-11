@@ -37,7 +37,7 @@ class RTObject {
             $attrs = array();
             foreach (getAttrValues($i) as $record) {
                 if (!isset($record['name'])) {
-                    throw new Exception("Record $i is broken");
+                    throw new \Exception("Record $i is broken");
                 }
 
                 $attrs[$record['name']] = $record['value'];
