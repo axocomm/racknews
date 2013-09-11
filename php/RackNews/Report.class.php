@@ -96,7 +96,19 @@ class Report {
     }
 
     public function display() {
-        var_dump($this->report_objects);
+        switch (strtolower($this->params['format'])) {
+        case 'html':
+        case 'csv':
+        case 'xml':
+            throw new \Exception('Not yet implemented');
+            break;
+        case 'json':
+            echo json_encode($this->report_objects);
+            break;
+        default:
+            var_dump($this->report_objects);
+            break;
+        }
     }
 
     private static function pick_fields($object, $fields) {
