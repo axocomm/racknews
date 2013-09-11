@@ -37,6 +37,17 @@ class Report {
     public function build() {
         $objects = $this->objects;
 
+        if (isset($this->params['report'])) {
+            switch (strtolower($this->params['report'])) {
+            case 'fields':
+                $objects = RTObject::get_fields($objects);
+                break;
+            default:
+                throw new \Exception('Invalid report');
+                break;
+            }
+        }
+
         if (count($this->params['has'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
