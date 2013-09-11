@@ -37,15 +37,15 @@ class Report {
     }
 
     public function build() {
-        if (!$params) {
-            $params = array(
-                'fields' => $this->fields,
-                'types'  => $this->types,
-                'format' => $this->format
-            );
+        if (count($this->fields)) {
+            foreach ($this->objects as $object) {
+                $this->report_objects[] = self::pick_fields($object, $this->fields);
+            }
         }
+    }
 
-        var_dump($params);
+    public function display() {
+        var_dump($this->report_objects);
     }
     
     public function get_objects() {
@@ -78,5 +78,43 @@ class Report {
 
     public function set_format($format) {
         $this->format = $format;
+    }
+
+    private static function pick_fields($object, $fields) {
+        $out = array();
+
+        foreach ($fields as $field) {
+            // Special treatment for tags and ports.
+            if (isset($object[$field])) {
+                if ($field == 'etags' or $field == 'atags') {
+                    $tags = array();
+                    foreach ($object[$field] as $tag) {
+                        $tags[] = $tag['tag'];
+                    }
+
+                    $value = $tags;
+                } elseif ($field == 'ports') {
+                    $ports = array();
+                    if (has_mac($object)) {
+                        foreach ($object['ports'] as $port) {
+                            $ports[] = array(
+                                'interface' => $port['name'],
+                                'l2address' => $port['l2address']
+                            );
+                        }
+                    }
+
+                    $value = multi_implode($ports, ',');
+                } else {
+                    $value = $object[$field];
+                }
+            } else {
+                $value = NULL;
+            }
+
+            $out[$field] = $value;
+        }
+
+        return $out;
     }
 }
