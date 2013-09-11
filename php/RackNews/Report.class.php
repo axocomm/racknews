@@ -96,7 +96,7 @@ class Report {
     }
 
     public function display() {
-        switch (strtolower($this->params['format'])) {
+        switch (strtolower($this->params['format'][0])) {
         case 'html':
         case 'csv':
         case 'xml':
