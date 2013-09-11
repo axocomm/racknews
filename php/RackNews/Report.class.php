@@ -17,8 +17,10 @@ class Report {
     }
 
     public function set_params($params) {
+        $excludes = array('id', 'report');
         foreach ($params as $key => &$param) {
-            if (!(is_numeric($param) or is_array($param)) or $key == 'id') {
+            if (!(is_numeric($param) or is_array($param)) &&
+               (!in_array($key, $excludes))) {
                 $param = explode(',', $param);
             }
         }
