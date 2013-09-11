@@ -14,8 +14,8 @@ class Report {
     private $types;
     private $format;
 
-    public function __construct() {
-        $this->rt_objects = array();
+    public function __construct($rt_objects) {
+        $this->rt_objects = ($rt_objects) ? $rt_objects : array();
         $this->report_objects = array();
         $this->fields = array();
         $this->types = array();
