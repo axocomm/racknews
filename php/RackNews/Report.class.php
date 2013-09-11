@@ -86,6 +86,18 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (count($this->params['matching'])) {
+            $tmp_objects = array();
+            foreach ($this->params['matching'] as $match_string) {
+                list($k, $v) = explode(':', $match_string);
+                if (($found = RTObject::find_by_attr($objects, $k, $v)) !== FALSE) {
+                    $tmp_objects[] = $found;
+                }
+            }
+
+            $objects = $tmp_objects;
+        }
+
         if (count($objects)) {
             $this->report_objects = $objects;
         } else {
