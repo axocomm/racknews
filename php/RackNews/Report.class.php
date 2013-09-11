@@ -35,29 +35,38 @@ class Report {
     }
 
     public function build() {
-        $report_objects = $this->objects;
+        $objects = $this->objects;
 
         if (count($this->params['has'])) {
             $tmp_objects = array();
-            foreach ($report_objects as $object) {
+            foreach ($objects as $object) {
                 if (self::check_fields($object, $this->params['has'])) {
                     $tmp_objects[] = $object;
                 }
             }
 
-            $report_objects = $tmp_objects;
+            $objects = $tmp_objects;
+        }
+
+        if (count($this->params['types'])) {
+            $tmp_objects = array();
+            foreach ($this->params['types'] as $type) {
+                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_type($objects, $type));
+            }
+
+            $objects = $tmp_objects;
         }
 
         if (count($this->params['fields'])) {
             $tmp_objects = array();
-            foreach ($report_objects as $object) {
+            foreach ($objects as $object) {
                 $tmp_objects[] = self::pick_fields($object, $this->params['fields']);
             }
 
-            $report_objects = $tmp_objects;
+            $objects = $tmp_objects;
         }
 
-        $this->report_objects = $report_objects;
+        $this->report_objects = $objects;
     }
 
     public function display() {
