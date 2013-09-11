@@ -50,6 +50,26 @@ class RTObject {
         return $objects;
     }
 
+    public static function find_by_name($objects, $name) {
+        foreach ($objects as $object) {
+            if ($object['name'] == $name) {
+                return $object;
+            }
+        }
+
+        return FALSE;
+    }
+
+    public static function find_by_id($objects, $id) {
+        foreach ($objects as $object) {
+            if ($object['id'] == $id) {
+                return $object;
+            }
+        }
+
+        return FALSE;
+    }
+
     public static function find_by_type($objects, $type_name) {
         $out = array();
         $types = readChapter(CHAP_OBJTYPE);
