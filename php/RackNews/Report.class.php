@@ -2,12 +2,6 @@
 namespace RackNews;
 
 class Report {
-    const FORMAT_HTML = 1;
-    const FORMAT_CSV = 2;
-    const FORMAT_JSON = 3;
-    const FORMAT_XML = 4;
-    const FORMAT_RAW = 5;
-
     private $objects;
     private $report_objects;
     private $params;
