@@ -17,8 +17,8 @@ class Report {
     }
 
     public function set_params($params) {
-        foreach ($params as &$param) {
-            if (!(is_numeric($param) or is_array($param))) {
+        foreach ($params as $key => &$param) {
+            if (!(is_numeric($param) or is_array($param)) or $key == 'id') {
                 $param = explode(',', $param);
             }
         }
@@ -60,7 +60,7 @@ class Report {
         if (count($this->params['names'])) {
             $tmp_objects = array();
             foreach ($this->params['names'] as $name) {
-                if (($found = RTObject::find_by_name($objects, $name)) !== FALSE) {
+                if (($found = RTObject::find_by_attr($objects, 'name', $name)) !== FALSE) {
                     $tmp_objects[] = $found;
                 }
             }
@@ -69,7 +69,7 @@ class Report {
         } elseif (count($this->params['id'])) {
             $tmp_objects = array();
             foreach ($this->params['id'] as $id) {
-                if (($found = RTObject::find_by_id($objects, $id)) !== FALSE) {
+                if (($found = RTObject::find_by_attr($objects, 'id', $id)) !== FALSE) {
                     $tmp_objects[] = $found;
                 }
             }
