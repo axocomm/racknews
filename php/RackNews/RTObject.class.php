@@ -71,13 +71,14 @@ class RTObject {
     }
 
     public static function find_by_attr($objects, $k, $v) {
+        $matches = array();
         foreach ($objects as $object) {
             if ($object[$k] == $v) {
-                return $object;
+                $matches[] = $object;
             }
         }
 
-        return FALSE;
+        return count($matches) ? $matches : FALSE;
     }
 
     public static function find_by_type($objects, $type_name) {

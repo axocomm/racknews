@@ -61,7 +61,7 @@ class Report {
             $tmp_objects = array();
             foreach ($this->params['names'] as $name) {
                 if (($found = RTObject::find_by_attr($objects, 'name', $name)) !== FALSE) {
-                    $tmp_objects[] = $found;
+                    $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
 
@@ -70,7 +70,7 @@ class Report {
             $tmp_objects = array();
             foreach ($this->params['id'] as $id) {
                 if (($found = RTObject::find_by_attr($objects, 'id', $id)) !== FALSE) {
-                    $tmp_objects[] = $found;
+                    $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
             
@@ -91,7 +91,7 @@ class Report {
             foreach ($this->params['matching'] as $match_string) {
                 list($k, $v) = explode(':', $match_string);
                 if (($found = RTObject::find_by_attr($objects, $k, $v)) !== FALSE) {
-                    $tmp_objects[] = $found;
+                    $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
 
