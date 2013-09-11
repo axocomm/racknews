@@ -10,42 +10,20 @@ class Report {
 
     private $objects;
     private $report_objects;
-    private $fields;
-    private $types;
-    private $format;
+    private $params;
 
     public function __construct($objects) {
         $this->objects = ($objects) ? $objects : array();
         $this->report_objects = array();
-        $this->fields = array();
-        $this->types = array();
-        $this->format = self::FORMAT_RAW;
+        $this->params = array();
     }
 
     public function get_params() {
-        return array(
-            'fields' => $this->fields,
-            'types' => $this->types,
-            'format' => $this->format
-        );
+        return $this->params;
     }
 
     public function set_params($params) {
-        $this->fields = isset($params['fields']) ? $params['fields'] : $this->fields;
-        $this->types = isset($params['types']) ? $params['types'] : $this->types;
-        $this->format = isset($params['format']) ? $params['format'] : $this->format;
-    }
-
-    public function build() {
-        if (count($this->fields)) {
-            foreach ($this->objects as $object) {
-                $this->report_objects[] = self::pick_fields($object, $this->fields);
-            }
-        }
-    }
-
-    public function display() {
-        var_dump($this->report_objects);
+        $this->params = $params;
     }
     
     public function get_objects() {
@@ -56,28 +34,16 @@ class Report {
         return $this->report_objects;
     }
 
-    public function get_fields() {
-        return $this->fields;
+    public function build() {
+        if (count($this->params['fields'])) {
+            foreach ($this->objects as $object) {
+                $this->report_objects[] = self::pick_fields($object, $this->params['fields']);
+            }
+        }
     }
 
-    public function get_types() {
-        return $this->types;
-    }
-
-    public function get_format() {
-        return $this->format;
-    }
-
-    public function set_fields($fields) {
-        $this->fields = $fields;
-    }
-
-    public function set_types($types) {
-        $this->types = $types;
-    }
-
-    public function set_format($format) {
-        $this->format = $format;
+    public function display() {
+        var_dump($this->report_objects);
     }
 
     private static function pick_fields($object, $fields) {
