@@ -6,9 +6,15 @@ use \RackNews\RTObject as RTObject;
 $report = new Report(RTObject::get_objects());
 $params = array(
     'fields' => array('name', 'FQDN'),
-    'format' => Report::FORMAT_CSV
+    'format' => Report::FORMAT_CSV,
+    'has'    => array('name'),
+    'types'  => array('server')
 );
 
 $report->set_params($params);
-$report->build();
-$report->display();
+try {
+    $report->build();
+    $report->display();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
