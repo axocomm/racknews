@@ -37,10 +37,10 @@ class RTObject {
             $attrs = array();
             foreach (getAttrValues($i) as $record) {
                 if (!isset($record['name'])) {
-                    throw new Exception("{$record['name']} is broken.");
+                    throw new Exception("Record $i is broken");
                 }
 
-                $attrs[$record['name']] = $info;
+                $attrs[$record['name']] = $record['value'];
             }
 
             $info = array_merge($info, $attrs);
