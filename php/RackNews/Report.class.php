@@ -66,14 +66,18 @@ class Report {
         if (count($this->params['names'])) {
             $tmp_objects = array();
             foreach ($this->params['names'] as $name) {
-                $tmp_objects[] = RTObject::find_by_name($objects, $name);
+                if (($found = RTObject::find_by_name($objects, $name)) !== FALSE) {
+                    $tmp_objects[] = $found;
+                }
             }
 
             $objects = $tmp_objects;
         } elseif (count($this->params['id'])) {
             $tmp_objects = array();
             foreach ($this->params['id'] as $id) {
-                $tmp_objects[] = RTObject::find_by_id($objects, $id);
+                if (($found = RTObject::find_by_id($objects, $id)) !== FALSE) {
+                    $tmp_objects[] = $found;
+                }
             }
             
             $objects = $tmp_objects;
@@ -88,7 +92,13 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        $this->report_objects = $objects;
+        if (count($objects)) {
+            $this->report_objects = $objects;
+        } else {
+            $this->report_objects = array(
+                'error' => 'No objects matched your criteria.'
+            );
+        }
     }
 
     public function display() {
