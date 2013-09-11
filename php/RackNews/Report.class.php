@@ -23,6 +23,12 @@ class Report {
     }
 
     public function set_params($params) {
+        foreach ($params as &$param) {
+            if (!(is_numeric($param) or is_array($param))) {
+                $param = explode(',', $param);
+            }
+        }
+
         $this->params = $params;
     }
     
