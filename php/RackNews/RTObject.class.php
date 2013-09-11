@@ -46,6 +46,16 @@ class RTObject {
         return FALSE;
     }
 
+    public static function find_by_fqdn($objects, $fqdn) {
+        foreach ($objects as $object) {
+            if ($object['FQDN'] == $fqdn) {
+                return $object;
+            }
+        }
+
+        return FALSE;
+    }
+
     public static function find_by_attr($objects, $k, $v) {
         $matches = array();
         foreach ($objects as $object) {
