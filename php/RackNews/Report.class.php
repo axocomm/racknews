@@ -221,26 +221,4 @@ class Report {
 
         return $out;
     }
-
-    private static function check_fields($object, $fields) {
-        foreach ($fields as $field) {
-            if (!self::has_field($object, $field)) {
-                return 0;
-            }
-        }
-
-        return 1;
-    }
-
-    private static function has_field($object, $field) {
-        if (isset($object[$field]) && ($v = $object[$field]) !== FALSE) {
-            if (is_array($v)) {
-                return count($v);
-            } else {
-                return strlen($v);
-            }
-        }
-
-        return 0;
-    }
 }
