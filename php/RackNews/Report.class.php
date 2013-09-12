@@ -19,7 +19,8 @@ class Report {
     public function set_params($params) {
         $excludes = array('id', 'report');
         foreach ($params as $key => &$param) {
-            if (!(is_numeric($param) or is_array($param)) &&
+            if (!empty($param) && 
+               (!(is_numeric($param) or is_array($param))) &&
                (!in_array($key, $excludes))) {
                 $param = explode(',', $param);
             }
@@ -39,11 +40,11 @@ class Report {
     public function build() {
         $objects = $this->objects;
 
-        if (isset($this->params['report'])) {
+        if (!empty($this->params['report'])) {
             $objects = $this->pre_build($objects, strtolower($this->params['report']));
         }
 
-        if (count($this->params['has'])) {
+        if (!empty($this->params['has'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
                 if (ObjectUtils::check_fields($object, $this->params['has'])) {
@@ -54,7 +55,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['types'])) {
+        if (!empty($this->params['types'])) {
             $tmp_objects = array();
             foreach ($this->params['types'] as $type) {
                 $tmp_objects = array_merge($tmp_objects, ObjectUtils::find_by_type($objects, $type));
@@ -63,7 +64,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['names'])) {
+        if (!empty($this->params['names'])) {
             $tmp_objects = array();
             foreach ($this->params['names'] as $name) {
                 if (($found = ObjectUtils::find_by_attr($objects, 'name', $name)) !== FALSE) {
@@ -72,7 +73,7 @@ class Report {
             }
 
             $objects = $tmp_objects;
-        } elseif (count($this->params['id'])) {
+        } elseif (!empty($this->params['id'])) {
             $tmp_objects = array();
             foreach ($this->params['id'] as $id) {
                 if (($found = ObjectUtils::find_by_attr($objects, 'id', $id)) !== FALSE) {
@@ -83,7 +84,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['log'])) {
+        if (!empty($this->params['log'])) {
             $records = getLogRecords();
             $tmp_objects = array();
             foreach ($this->params['log'] as $query) {
@@ -95,7 +96,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['comment'])) {
+        if (!empty($this->params['comment'])) {
             $tmp_objects = array();
             foreach ($this->params['comment'] as $query) {
                 $tmp_objects = array_merge($tmp_objects, ObjectUtils::find_by_comment($objects, $query));
@@ -104,7 +105,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['fields'])) {
+        if (!empty($this->params['fields'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
                 $tmp_objects[] = self::pick_fields($object, $this->params['fields']);
@@ -113,7 +114,7 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (count($this->params['matching'])) {
+        if (!empty($this->params['matching'])) {
             $tmp_objects = array();
             foreach ($this->params['matching'] as $match_string) {
                 list($k, $v) = explode(':', $match_string);
