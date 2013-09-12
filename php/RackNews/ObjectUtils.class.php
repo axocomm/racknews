@@ -1,7 +1,7 @@
 <?php
 namespace RackNews;
 
-class RTObject {
+class ObjectUtils {
     public static function get_objects() {
         $rt_objects = scanRealmByText('object');
 
