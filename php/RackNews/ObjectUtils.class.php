@@ -165,7 +165,7 @@ class ObjectUtils {
         return 0;
     }
 
-    private static function check_fields($object, $fields) {
+    public static function check_fields($object, $fields) {
         foreach ($fields as $field) {
             if (!self::has_field($object, $field)) {
                 return 0;
@@ -175,7 +175,7 @@ class ObjectUtils {
         return 1;
     }
 
-    private static function has_field($object, $field) {
+    public static function has_field($object, $field) {
         if (isset($object[$field]) && ($v = $object[$field]) !== FALSE) {
             if (is_array($v)) {
                 return count($v);
