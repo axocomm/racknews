@@ -95,7 +95,7 @@ class RTObject {
             foreach ($tags as $tag) {
                 $found = 0;
                 foreach ($object['atags'] as $atag) {
-                    $if ($atag['tag'] == $tag) {
+                    if ($atag['tag'] == $tag) {
                         $out[] = $object;
                         $found = 1;
                     }
