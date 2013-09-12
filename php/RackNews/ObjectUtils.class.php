@@ -153,6 +153,18 @@ class ObjectUtils {
         return $matches;
     }
 
+    public static function has_mac($object) {
+        if (count($object['ports'])) {
+            foreach ($object['ports'] as $port) {
+                if ((isset($port['l2address']) && strlen($port['l2address']))) {
+                    return 1;
+                }
+            }
+        }
+
+        return 0;
+    }
+
     public static function get_fields($objects) {
         if (!count($objects)) {
             return FALSE;
