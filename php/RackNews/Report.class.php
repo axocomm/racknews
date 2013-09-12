@@ -83,6 +83,25 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (count($this->params['log'])) {
+            $records = getLogRecords();
+            $tmp_objects = array();
+            foreach ($this->params['log'] as $query) {
+                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_log_query($objects, $records, $query));
+            }
+
+            $objects = $tmp_objects;
+        }
+
+        if (count($this->params['comment'])) {
+            $tmp_objects = array();
+            foreach ($this->params['comment'] as $query) {
+                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_comment($objects, $query));
+            }
+
+            $objects = $tmp_objects;
+        }
+
         if (count($this->params['fields'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
