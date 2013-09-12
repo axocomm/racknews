@@ -46,7 +46,7 @@ class Report {
         if (count($this->params['has'])) {
             $tmp_objects = array();
             foreach ($objects as $object) {
-                if (self::check_fields($object, $this->params['has'])) {
+                if (ObjectUtils::check_fields($object, $this->params['has'])) {
                     $tmp_objects[] = $object;
                 }
             }
