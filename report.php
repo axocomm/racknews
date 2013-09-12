@@ -1,9 +1,9 @@
 <?php
 include 'init.php';
 use \RackNews\Report as Report;
-use \RackNews\RTObject as RTObject;
+use \RackNews\ObjectUtils as ObjectUtils;
 
-$report = new Report(RTObject::get_objects());
+$report = new Report(ObjectUtils::get_objects());
 $params = $_REQUEST;
 
 $report->set_params($params);
