@@ -1,6 +1,12 @@
 <?php
 namespace RackNews;
 
+if (!function_exists('loadIPv4AddrList')) {
+    function loadIPv4AddrList(&$info) {
+        loadIPAddrList($info);
+    }
+}
+
 class Util {
     public static function get_addrs() {
         $rt_nets = scanRealmByText('ipv4net');
