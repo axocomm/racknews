@@ -88,6 +88,36 @@ class RTObject {
         return $out;
     }
 
+    public static function find_by_tags($objects, $tags) {
+        $out = array();
+
+        foreach ($objects as $object) {
+            foreach ($tags as $tag) {
+                $found = 0;
+                foreach ($object['atags'] as $atag) {
+                    $if ($atag['tag'] == $tag) {
+                        $out[] = $object;
+                        $found = 1;
+                    }
+                }
+
+                if (!$found) {
+                    foreach ($object['etags'] as $etag) {
+                        if ($etag['tag'] == $tag) {
+                            $out[] = $object;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (count($out)) {
+            return $out;
+        } else {
+            return NULL;
+        }
+    }
+
     public static function get_fields($objects) {
         if (!count($objects)) {
             return FALSE;
