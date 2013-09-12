@@ -1,4 +1,4 @@
-<?php include 'php/view/header.php'; ?>
+<?php include 'resources/template-parts/header.php'; ?>
             <form id="report-form" action="report.php" method="get">
                 <fieldset>
                     <legend>Report Generation</legend>
@@ -27,4 +27,4 @@
                     </div>
                 </fieldset>
             </form>
-<?php include 'php/view/footer.php'; ?>
+<?php include 'resources/template-parts/footer.php'; ?>
