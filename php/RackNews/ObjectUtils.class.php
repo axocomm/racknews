@@ -129,8 +129,8 @@ class ObjectUtils {
                     $content = $message['content'];
                     if (stripos($content, $query) !== FALSE) {
                         $match = self::find_by_id($objects, $id);
-                        $match['log_matches'][] = $content;
-                        if (!in_array($found_ids, $match['id'])) {
+                        if (!in_array($match['id'], $found_ids)) {
+                            $match['log_match'] = $content;
                             $matches[] = $match;
                             $found_ids[] = $id;
                         }
