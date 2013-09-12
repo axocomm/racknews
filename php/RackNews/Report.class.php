@@ -57,7 +57,7 @@ class Report {
         if (count($this->params['types'])) {
             $tmp_objects = array();
             foreach ($this->params['types'] as $type) {
-                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_type($objects, $type));
+                $tmp_objects = array_merge($tmp_objects, ObjectUtils::find_by_type($objects, $type));
             }
 
             $objects = $tmp_objects;
@@ -66,7 +66,7 @@ class Report {
         if (count($this->params['names'])) {
             $tmp_objects = array();
             foreach ($this->params['names'] as $name) {
-                if (($found = RTObject::find_by_attr($objects, 'name', $name)) !== FALSE) {
+                if (($found = ObjectUtils::find_by_attr($objects, 'name', $name)) !== FALSE) {
                     $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
@@ -75,7 +75,7 @@ class Report {
         } elseif (count($this->params['id'])) {
             $tmp_objects = array();
             foreach ($this->params['id'] as $id) {
-                if (($found = RTObject::find_by_attr($objects, 'id', $id)) !== FALSE) {
+                if (($found = ObjectUtils::find_by_attr($objects, 'id', $id)) !== FALSE) {
                     $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
@@ -87,7 +87,7 @@ class Report {
             $records = getLogRecords();
             $tmp_objects = array();
             foreach ($this->params['log'] as $query) {
-                if (($found = RTObject::find_by_log_query($objects, $records, $query)) !== FALSE) {
+                if (($found = ObjectUtils::find_by_log_query($objects, $records, $query)) !== FALSE) {
                     $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
@@ -98,7 +98,7 @@ class Report {
         if (count($this->params['comment'])) {
             $tmp_objects = array();
             foreach ($this->params['comment'] as $query) {
-                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_comment($objects, $query));
+                $tmp_objects = array_merge($tmp_objects, ObjectUtils::find_by_comment($objects, $query));
             }
 
             $objects = $tmp_objects;
@@ -117,7 +117,7 @@ class Report {
             $tmp_objects = array();
             foreach ($this->params['matching'] as $match_string) {
                 list($k, $v) = explode(':', $match_string);
-                if (($found = RTObject::find_by_attr($objects, $k, $v)) !== FALSE) {
+                if (($found = ObjectUtils::find_by_attr($objects, $k, $v)) !== FALSE) {
                     $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
@@ -153,7 +153,7 @@ class Report {
     private function pre_build($objects, $report) {
         switch (strtolower($this->params['report'])) {
         case 'fields':
-            $objects = RTObject::get_fields($objects);
+            $objects = ObjectUtils::get_fields($objects);
             break;
         case 'unused_ip':
             $addrs = Util::get_addrs();
@@ -163,9 +163,9 @@ class Report {
             foreach ($addrs as $addr) {
                 $f_name = explode(',', $addr['object_name']);
                 $f_name = $f_name[0];
-                if ((RTObject::find_by_name($objects, $addr['object_name']) === FALSE) &&
-                    (RTObject::find_by_name($objects, $f_name) === FALSE) &&
-                    (RTObject::find_by_fqdn($objects, $addr['object_name']) === FALSE) &&
+                if ((ObjectUtils::find_by_name($objects, $addr['object_name']) === FALSE) &&
+                    (ObjectUtils::find_by_name($objects, $f_name) === FALSE) &&
+                    (ObjectUtils::find_by_fqdn($objects, $addr['object_name']) === FALSE) &&
                     (!array_key_exists($addr['ip'], $allocs))) {
                         $tmp_objects[] = array(
                             'FQDN' => $addr['object_name'],
@@ -174,7 +174,7 @@ class Report {
                 }
             }
 
-            $objects = array_merge(RTObject::find_by_tags($objects, array('not-in-use')), $tmp_objects);
+            $objects = array_merge(ObjectUtils::find_by_tags($objects, array('not-in-use')), $tmp_objects);
             break;
         default:
             throw new \Exception('Invalid report');
