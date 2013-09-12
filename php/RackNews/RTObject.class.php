@@ -118,6 +118,37 @@ class RTObject {
         }
     }
 
+    public static function find_by_log_query($objects, $records, $query) {
+        $matches = array();
+        $found_ids = array();
+        foreach ($records as $record) {
+            $id = $record['object_id'];
+            if (!in_array($id, $found_ids)) {
+                $messages = getLogRecordsForObject($id);
+                $content = $messages[0]['content'];
+                if (stripos($content, $query) !== FALSE) {
+                    $match = self::find_by_id($objects, $id);
+                    $match['log_match'] = $content;
+                    $matches[] = $match;
+                    $found_ids[] = $id;
+                }
+            }
+        }
+
+        return $matches;
+    }
+
+    public static function find_by_query($objects, $query) {
+        $matches = array();
+        foreach ($objects as $object) {
+            if (stripos($object['comment'], $query) !== FALSE) {
+                $matches[] = $object;
+            }
+        }
+
+        return $matches;
+    }
+
     public static function get_fields($objects) {
         if (!count($objects)) {
             return FALSE;
