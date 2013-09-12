@@ -138,7 +138,7 @@ class RTObject {
         return $matches;
     }
 
-    public static function find_by_query($objects, $query) {
+    public static function find_by_comment($objects, $query) {
         $matches = array();
         foreach ($objects as $object) {
             if (stripos($object['comment'], $query) !== FALSE) {
