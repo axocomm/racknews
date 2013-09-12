@@ -1,5 +1,5 @@
 <?php include 'resources/template-parts/header.php'; ?>
-            <form id="report-form" action="report.php" method="get">
+            <form id="report-form" action="report.php" method="post">
                 <fieldset>
                     <legend>Report Generation</legend>
                     <div class="control-group">
