@@ -1,0 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Tauri);
+
+body {
+    font-family: 'Tauri', Helvetica, Arial, sans-serif;
+    padding-top: 60px;
+}
+
+a {
+    transition: .2s;
+    -moz-transition: .2s;
+    -o-transition: .2s;
+    -webkit-transition: .2s;
+}
