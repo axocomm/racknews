@@ -41,7 +41,7 @@ class Util {
 
         foreach ($pieces as $piece) {
             if (is_array($piece)) {
-                $out .= multi_implode($piece, $glue) . $glue;
+                $out .= self::multi_implode($piece, $glue) . $glue;
             } else {
                 $out .= $piece . $glue;
             }
