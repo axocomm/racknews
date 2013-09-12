@@ -87,7 +87,9 @@ class Report {
             $records = getLogRecords();
             $tmp_objects = array();
             foreach ($this->params['log'] as $query) {
-                $tmp_objects = array_merge($tmp_objects, RTObject::find_by_log_query($objects, $records, $query));
+                if (($found = RTObject::find_by_log_query($objects, $records, $query)) !== FALSE) {
+                    $tmp_objects = array_merge($tmp_objects, $found);
+                }
             }
 
             $objects = $tmp_objects;

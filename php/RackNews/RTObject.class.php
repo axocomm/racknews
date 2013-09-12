@@ -125,12 +125,16 @@ class RTObject {
             $id = $record['object_id'];
             if (!in_array($id, $found_ids)) {
                 $messages = getLogRecordsForObject($id);
-                $content = $messages[0]['content'];
-                if (stripos($content, $query) !== FALSE) {
-                    $match = self::find_by_id($objects, $id);
-                    $match['log_match'] = $content;
-                    $matches[] = $match;
-                    $found_ids[] = $id;
+                foreach ($messages as $message) {
+                    $content = $message['content'];
+                    if (stripos($content, $query) !== FALSE) {
+                        $match = self::find_by_id($objects, $id);
+                        $match['log_matches'][] = $content;
+                        if (!in_array($found_ids, $match['id'])) {
+                            $matches[] = $match;
+                            $found_ids[] = $id;
+                        }
+                    }
                 }
             }
         }
