@@ -199,7 +199,7 @@ class Report {
                     $value = $tags;
                 } elseif ($field == 'ports') {
                     $ports = array();
-                    if (has_mac($object)) {
+                    if (ObjectUtils::has_mac($object)) {
                         foreach ($object['ports'] as $port) {
                             $ports[] = array(
                                 'interface' => $port['name'],
@@ -208,7 +208,7 @@ class Report {
                         }
                     }
 
-                    $value = multi_implode($ports, ',');
+                    $value = Util::multi_implode($ports, ',');
                 } else {
                     $value = $object[$field];
                 }
