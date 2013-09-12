@@ -134,6 +134,27 @@ class Report {
         case 'fields':
             $objects = RTObject::get_fields($objects);
             break;
+        case 'unused_ip':
+            $addrs = Util::get_addrs();
+            $allocs = Util::get_allocs($objects);
+            $tmp_objects = array();
+
+            foreach ($addrs as $addr) {
+                $f_name = explode(',', $addr['object_name']);
+                $f_name = $f_name[0];
+                if ((RTObject::find_by_name($objects, $addr['object_name']) === FALSE) &&
+                    (RTObject::find_by_name($objects, $f_name) === FALSE) &&
+                    (RTObject::find_by_fqdn($objects, $addr['object_name']) === FALSE) &&
+                    (!array_key_exists($addr['ip'], $allocs))) {
+                        $tmp_objects[] = array(
+                            'FQDN' => $addr['object_name'],
+                            'ip'   => $addr['ip']
+                        );
+                }
+            }
+
+            $objects = array_merge(RTObject::find_by_tags($objects, array('not-in-use')), $tmp_objects);
+            break;
         default:
             throw new \Exception('Invalid report');
             break;
