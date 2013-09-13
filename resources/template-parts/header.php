@@ -1,10 +1,11 @@
+<?php $rd = strlen($rd) ? $rd : '.'; ?> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-        <link rel="stylesheet" href="resources/css/styles.css">
-        <link rel="stylesheet" href="resources/css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/styles.css">
+        <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/bootstrap-responsive.min.css">
         <title>RackNews</title>
     </head>
     <body>
