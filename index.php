@@ -27,4 +27,19 @@
                     </div>
                 </fieldset>
             </form>
+            <button onclick="getFormData();" class="btn">Query String</button>
+            <script>
+                function getFormData() {
+                    var query = [];
+                    var formData = $('#report-form').serializeArray();
+                    for (var i in formData) {
+                        if (formData[i].value.length) {
+                            query.push(formData[i].name + '=' + formData[i].value);
+                        }
+                    } 
+
+                    var queryString = query.join('&');
+                    console.log(queryString);
+                }
+            </script>
 <?php include 'resources/template-parts/footer.php'; ?>
