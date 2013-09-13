@@ -36,6 +36,11 @@
                                     <td class="has-check"><input type="checkbox" name="has[]" value="<?php echo $field['field']; ?>"></td>
                                 </tr>
                                 <?php endforeach; ?>
+                                <tr>
+                                    <td></td>
+                                    <td class="fields-check"><button type="button" class="btn" onclick="return clearCheckboxes('fields');">Clear</button></td>
+                                    <td class="has-check"><button type="button" class="btn" onclick="return clearCheckboxes('has');">Clear</button></td>
+                                </tr>
                             </tbody>
                         </table>
                         <?php endif; ?> 
@@ -86,6 +91,12 @@
                     var queryString = query.join('&');
                     $('#query-string').text(queryString);
                     $('#query-string-modal').modal();
+                }
+
+                function clearCheckboxes(group) {
+                    $('#fields-table td.' + group + '-check input:checkbox').each(function() {
+                        $(this).attr('checked', false);
+                    });
                 }
             </script>
 <?php include 'resources/template-parts/footer.php'; ?>
