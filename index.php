@@ -78,7 +78,12 @@
                     <div class="control-group">
                         <label class="control-label" for="format">Format</label>
                         <div class="controls">
-                            <input type="text" name="format" placeholder="Format">
+                            <select name="format">
+                                <option value="html">HTML</option>
+                                <option value="json">JSON</option>
+                                <option value="csv">CSV</option>
+                                <option value="xml">XML</option>
+                            </select>
                         </div>
                     </div>
                     <div class="control-group">
