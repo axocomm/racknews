@@ -1,3 +1,4 @@
+<?php include 'init.php'; ?>
 <?php include 'resources/template-parts/header.php'; ?>
             <form id="report-form" action="report.php" method="post">
                 <fieldset>
@@ -5,7 +6,20 @@
                     <div class="control-group">
                         <label class="control-label" for="fields">Fields</label>
                         <div class="controls">
-                            <input type="text" name="fields" placeholder="name,id,FQDN,objtype_id,etags">
+                            <?php
+                            $report = new \RackNews\Report(\RackNews\ObjectUtils::get_objects());
+                            $params = array(
+                                'report' => 'fields'
+                            );
+                            $report->set_params($params);
+                            try {
+                                $report->build();
+                                $fields = $report->get_report_objects();
+                                var_dump($fields);
+                            } catch (Exception $e) {
+                                echo '<div class="well">' . $e->getMessage() . '</div>';
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="control-group">
