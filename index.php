@@ -46,15 +46,39 @@
                         <?php endif; ?> 
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="names">Names</label>
+                        <div class="controls">
+                            <input type="text" name="names" placeholder="Names">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="id">ID</label>
+                        <div class="controls">
+                            <input type="text" name="id" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="log">Log Matches</label>
+                        <div class="controls">
+                            <input type="text" name="log" placeholder="Log Matches">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="comment">Comment Matches</label>
+                        <div class="controls">
+                            <input type="text" name="comment" placeholder="Comment Matches">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="types">Types</label>
                         <div class="controls">
-                            <input type="text" name="types" placeholder="server">
+                            <input type="text" name="types" placeholder="Types">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="format">Format</label>
                         <div class="controls">
-                            <input type="text" name="format" placeholder="json">
+                            <input type="text" name="format" placeholder="Format">
                         </div>
                     </div>
                     <div class="control-group">
