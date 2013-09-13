@@ -5,22 +5,40 @@
                     <legend>Report Generation</legend>
                     <div class="control-group">
                         <label class="control-label" for="fields">Fields</label>
-                        <div class="controls">
-                            <?php
-                            $report = new \RackNews\Report(\RackNews\ObjectUtils::get_objects());
-                            $params = array(
-                                'report' => 'fields'
-                            );
-                            $report->set_params($params);
-                            try {
-                                $report->build();
-                                $fields = $report->get_report_objects();
-                                var_dump($fields);
-                            } catch (Exception $e) {
-                                echo '<div class="well">' . $e->getMessage() . '</div>';
-                            }
-                            ?>
-                        </div>
+                        <?php
+                        $report = new \RackNews\Report(\RackNews\ObjectUtils::get_objects());
+                        $params = array(
+                            'report' => 'fields'
+                        );
+
+                        $report->set_params($params);
+                        try {
+                            $report->build();
+                            $fields = $report->get_report_objects();
+                        } catch (Exception $e) {
+                            echo '<div class="well">' . $e->getMessage() . '</div>';
+                        }
+                        ?>
+                        <?php if ($fields && count($fields)): ?>
+                        <table class="table table-striped table-condensed table-bordered table-hover" id="fields-table">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Selected</th>
+                                    <th>Required</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($fields as $field): ?>
+                                <tr>
+                                    <td><?php echo $field['field']; ?></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <?php endif; ?> 
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="types">Types</label>
