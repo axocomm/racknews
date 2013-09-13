@@ -32,8 +32,8 @@
                                 <?php foreach ($fields as $field): ?>
                                 <tr>
                                     <td><?php echo $field['field']; ?></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="fields-check"><input type="checkbox" name="fields[]" value="<?php echo $field['field']; ?>"></td>
+                                    <td class="has-check"><input type="checkbox" name="has[]" value="<?php echo $field['field']; ?>"></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
