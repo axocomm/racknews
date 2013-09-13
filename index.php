@@ -28,6 +28,19 @@
                 </fieldset>
             </form>
             <button onclick="getFormData();" class="btn">Query String</button>
+            <div class="modal hide fade" id="query-string-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>Query String</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Generated query string:</p>
+                    <code id="query-string"></code>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                </div>
+            </div>
             <script>
                 function getFormData() {
                     var query = [];
@@ -39,7 +52,8 @@
                     } 
 
                     var queryString = query.join('&');
-                    console.log(queryString);
+                    $('#query-string').text(queryString);
+                    $('#query-string-modal').modal();
                 }
             </script>
 <?php include 'resources/template-parts/footer.php'; ?>
