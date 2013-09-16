@@ -164,8 +164,29 @@ class Report {
     }
 
     public function as_html() {
-        // TODO: this
-        echo 'OK';
+        include 'resources/template-parts/header.php';
+?>
+        <h3>RackNews Report</h3>
+        <table class="table table-striped table-condensed table-bordered table-hover" id="report-table">
+            <thead>
+                <tr>
+                    <?php foreach ($this->params['fields'] as $field): ?>
+                    <th><?php echo $field; ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->report_objects as $object): ?>
+                <tr>
+                    <?php foreach ($this->params['fields'] as $field): ?>
+                    <td><?php echo $object[$field]; ?></td>
+                    <?php endforeach; ?>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+<?php
+        include 'resources/template-parts/footer.php';
     }
 
     public function as_xml() {
