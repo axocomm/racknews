@@ -57,4 +57,20 @@ class Util {
 
         return $out;
     }
+
+    public static function array_to_xml($arr, &$xml) {
+        foreach ($arr as $k => $v) {
+            if (is_array($v)) {
+                if (!is_numeric($k)) {
+                    $subnode = $xml->addChild($k);
+                    self::array_to_xml($v, $subnode);
+                } else {
+                    $subnode = $xml->addChild('object');
+                    self::array_to_xml($v, $subnode);
+                }
+            } else {
+                $xml->addChild($k, $v);
+            }
+        }
+    }
 }
