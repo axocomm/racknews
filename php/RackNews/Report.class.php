@@ -254,6 +254,16 @@ class Report {
                     }
 
                     $value = Util::multi_implode($ports, ',');
+                } elseif ($field == 'ipv4') {
+                    $allocs = array();
+                    foreach ($object['ipv4'] as $alloc) {
+                        $allocs[] = array(
+                            'osif' => $alloc['osif'],
+                            'ip'   => $alloc['addrinfo']['ip']
+                        );
+                    }
+
+                    $value = $allocs;
                 } else {
                     $value = $object[$field];
                 }
