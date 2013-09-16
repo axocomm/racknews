@@ -227,7 +227,7 @@ class ObjectUtils {
     }
 
     /**
-     * Determines if the given object has a MAC address registered.
+     * Determine if the given object has a MAC address registered.
      *
      * @param $object the object to test
      * @return if the object has a MAC/l2address entered for an interface
@@ -245,7 +245,7 @@ class ObjectUtils {
     }
 
     /**
-     * Determines if the given object has these fields set and populated.
+     * Determine if the given object has these fields set and populated.
      *
      * @param $object the object to test
      * @param $fields an array of fields to check
@@ -262,7 +262,7 @@ class ObjectUtils {
     }
 
     /**
-     * Determines if the given object has this field set and populated.
+     * Determine if the given object has this field set and populated.
      *
      * @param $object the object to test
      * @param $field the field to check
@@ -281,7 +281,7 @@ class ObjectUtils {
     }
 
     /**
-     * Gets an array of fields present in all objects.
+     * Get an array of fields present in all objects.
      *
      * @param $objects the objects to search
      * @return an array of fields common to these objects
