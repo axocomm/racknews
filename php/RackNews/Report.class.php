@@ -139,8 +139,12 @@ class Report {
         switch (strtolower($this->params['format'][0])) {
         case 'html':
         case 'csv':
-        case 'xml':
             throw new \Exception('Not yet implemented');
+            break;
+        case 'xml':
+            $xml = new \SimpleXMLElement('<?xml version="1.0" ?><report></report>');
+            Util::array_to_xml($this->report_objects, $xml);
+            print $xml->asXML();
             break;
         case 'json':
             echo json_encode($this->report_objects);
