@@ -1,13 +1,31 @@
 <?php
+/**
+ * RackNews - A reports tool for RackTables.
+ *
+ * Util.class.php
+ * A collection of general and RackTables-centric functions
+ */
 namespace RackNews;
 
+/**
+ * This function was renamed in later versions of RackTables.
+ */
 if (!function_exists('loadIPv4AddrList')) {
     function loadIPv4AddrList(&$info) {
         loadIPAddrList($info);
     }
 }
 
+/**
+ * The class Util.
+ */
 class Util {
+
+    /**
+     * Get the IPv4 addresses.
+     *
+     * @return an array of all IPv4 addresses and associated object names
+     */
     public static function get_addrs() {
         $rt_nets = scanRealmByText('ipv4net');
 
@@ -27,6 +45,12 @@ class Util {
         return $addrs;
     }
 
+    /**
+     * Get IP address allocations.
+     *
+     * @param $objects the objects to use
+     * @return an array containing IPs and their allocations
+     */
     public static function get_allocs($objects) {
         $allocs = array();
         foreach ($objects as $object) {
@@ -42,6 +66,13 @@ class Util {
         return $allocs;
     }
 
+    /**
+     * Recursively implode an array.
+     *
+     * @param $pieces the pieces
+     * @param $glue the glue
+     * @return a string of the recursively imploded array
+     */
     public static function multi_implode($pieces, $glue) {
         $out = '';
 
@@ -58,6 +89,12 @@ class Util {
         return $out;
     }
 
+    /**
+     * Convert (roughly) an associative array to XML and print.
+     *
+     * @param $arr the array
+     * @param $xml a reference to the current XML object
+     */
     public static function array_to_xml($arr, &$xml) {
         foreach ($arr as $k => $v) {
             if (is_array($v)) {
