@@ -185,7 +185,11 @@ class Report {
                 <?php foreach ($this->report_objects as $object): ?>
                 <tr>
                     <?php foreach ($this->params['fields'] as $field): ?>
+                    <?php if (is_array($object[$field])): ?>
+                    <td><?php echo Util::multi_implode($object[$field], ','); ?></td>
+                    <?php else: ?>
                     <td><?php echo $object[$field]; ?></td>
+                    <?php endif; ?>
                     <?php endforeach; ?>
                 </tr>
                 <?php endforeach; ?>
