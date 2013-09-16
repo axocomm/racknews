@@ -153,7 +153,13 @@ class Report {
     public function as_csv() {
         echo implode(',', $this->params['fields']) . "\n";
         $buffer = fopen('php://output', 'w');
-        foreach ($this->report_objects as $object) {
+        $csv_objects = array_merge(array(), $this->report_objects);
+        foreach ($csv_objects as $object) {
+            foreach ($object as &$attr) {
+                if (is_array($attr)) {
+                    $attr = Util::multi_implode($attr, ',');
+                }
+            }
             fputcsv($buffer, $object);
         }
         fclose($buffer);
