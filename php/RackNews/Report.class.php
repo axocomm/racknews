@@ -138,28 +138,40 @@ class Report {
     public function display() {
         switch (strtolower($this->params['format'][0])) {
         case 'html':
-            throw new \Exception('Not yet implemented');
-            break;
         case 'csv':
-            echo implode(',', $this->params['fields']) . "\n";
-            $buf = fopen('php://output', 'w');
-            foreach ($this->report_objects as $obj) {
-                fputcsv($buf, $obj);
-            }
-            fclose($buf);
-            break;
         case 'xml':
-            $xml = new \SimpleXMLElement('<?xml version="1.0" ?><report></report>');
-            Util::array_to_xml($this->report_objects, $xml);
-            print $xml->asXML();
-            break;
         case 'json':
-            echo json_encode($this->report_objects);
+            $display_function = 'as_' . strtolower($this->params['format'][0]);
+            $this->$display_function();
             break;
         default:
             var_dump($this->report_objects);
             break;
         }
+    }
+
+    public function as_csv() {
+        echo implode(',', $this->params['fields']) . "\n";
+        $buffer = fopen('php://output', 'w');
+        foreach ($this->report_objects as $object) {
+            fputcsv($buffer, $object);
+        }
+        fclose($buffer);
+    }
+
+    public function as_json() {
+        echo json_encode($this->report_objects);
+    }
+
+    public function as_html() {
+        // TODO: this
+        echo 'OK';
+    }
+
+    public function as_xml() {
+        $xml = new \SimpleXMLElement('<?xml version="1.0" ?><report></report>');
+        Util::array_to_xml($this->report_objects, $xml);
+        print $xml->asXML();
     }
 
     private function pre_build($objects, $report) {
