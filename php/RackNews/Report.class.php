@@ -138,8 +138,15 @@ class Report {
     public function display() {
         switch (strtolower($this->params['format'][0])) {
         case 'html':
-        case 'csv':
             throw new \Exception('Not yet implemented');
+            break;
+        case 'csv':
+            echo implode(',', $this->params['fields']) . "\n";
+            $buf = fopen('php://output', 'w');
+            foreach ($this->report_objects as $obj) {
+                fputcsv($buf, $obj);
+            }
+            fclose($buf);
             break;
         case 'xml':
             $xml = new \SimpleXMLElement('<?xml version="1.0" ?><report></report>');
