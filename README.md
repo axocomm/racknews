@@ -5,7 +5,7 @@
 **RackNews**, (possibly) the missing RackTables reports tool.
 
 ---
-**RackNews** is a reporting tool for the datacenter inventory management system [RackTables](http://www.racktables.org). It allows objects in RackTables to be searhed, filtered, and displayed in a variety of formats, including JSON, ~~XML~~, and ~~HTML pages~~ (not yet).
+**RackNews** is a reporting tool for the datacenter inventory management system [RackTables](http://www.racktables.org). It allows objects in RackTables to be searhed, filtered, and displayed in a variety of formats, including JSON, XML, and HTML.
 
 ### How to Use
 #### Installation
