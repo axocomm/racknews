@@ -21,7 +21,11 @@ RackNews allows for use on the command line, through cURL/wget for scripts, as w
 	https://rt.foo.com/racknews/report.php?report=unused_ip&fields=name,FQDN
 
 ##### Command line
-Coming soon
+To use via the command line, you may execute `report.php` and pass parameters in as long options. For example:
+
+	php report.php --report=unused_ip --fields=name,FQDN
+	
+will produce the same report as above.
 
 ### Available Parameters
 #### report
