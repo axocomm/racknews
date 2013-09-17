@@ -8,15 +8,6 @@
 namespace RackNews;
 
 /**
- * This function was renamed in later versions of RackTables.
- */
-if (!function_exists('loadIPv4AddrList')) {
-    function loadIPv4AddrList(&$info) {
-        \loadIPAddrList($info);
-    }
-}
-
-/**
  * The class Util.
  */
 class Util {
