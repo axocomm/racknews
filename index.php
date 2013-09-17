@@ -46,6 +46,12 @@
                         <?php endif; ?> 
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="report">Report</label>
+                        <div class="controls">
+                            <input type="text" name="report" placeholder="report">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="names">Names</label>
                         <div class="controls">
                             <input type="text" name="names" placeholder="Names">
