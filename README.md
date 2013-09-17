@@ -7,9 +7,14 @@
 ---
 **RackNews** is a reporting tool for the datacenter inventory management system [RackTables](http://www.racktables.org). It allows objects in RackTables to be searhed, filtered, and displayed in a variety of formats, including CSV, JSON, XML, and HTML.
 
+This tool can consolidate most of the data within RackTables and present it in a variety of ways, making it a viable option for scripts, larger applications, and just viewing it.
+
 ### How to Use
 #### Installation
 To install, simply clone this repository/extract the archive into RackTables' **wwwroot**.
+
+#### Authorisation
+RackNews uses the same authentication that RackTables uses; if you are prompted again for your credentials, you should use those.
 
 #### Operation
 ##### Web UI
@@ -58,7 +63,7 @@ A comma-separated list of names to search for. For example:
 gets the object entries for foo, bar, and baz.
 
 #### id
-A comma-separated list of object IDs to search for.
+A comma-separated list of object IDs (the object_ids RackTables uses) to search for.
 
 #### log
 A comma-separated list of log queries to search for. For example:
