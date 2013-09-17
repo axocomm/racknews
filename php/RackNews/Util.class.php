@@ -12,7 +12,7 @@ namespace RackNews;
  */
 if (!function_exists('loadIPv4AddrList')) {
     function loadIPv4AddrList(&$info) {
-        loadIPAddrList($info);
+        \loadIPAddrList($info);
     }
 }
 
