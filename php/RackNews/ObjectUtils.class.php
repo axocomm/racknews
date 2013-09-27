@@ -306,4 +306,22 @@ class ObjectUtils {
 
         return $fields;
     }
+
+    /**
+     * Get the attribute ID that corresponds to this attribute name.
+     *
+     * @param $attr_name the name of the attribute
+     * @return the ID of this attribute, FALSE if it does not exist.
+     */
+    public static function get_attr_id($attr_name) {
+        $map = getAttrMap();
+        $attributes = array();
+        foreach ($map as $id => $attr) {
+            if (!strcasecmp($attr['name'], $attr_name)) {
+                return $id;
+            }
+        }
+
+        return FALSE;
+    }
 }
