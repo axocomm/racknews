@@ -54,7 +54,11 @@ function update_attr($hostname, $attr_id, $attr_value) {
 
     $host_id = $object['id'];
     if (check_host($object, $attr_id)) {
-        echo "This will update $hostname ($host_id) attribute $attr_id with $attr_value\n";
+        try {
+            commitUpdateAttrValue($host_id, $attr_id, $attr_value);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     } else {
         die("Attribute $attr_id doesn't exist for this object");
     }
