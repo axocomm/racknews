@@ -3,46 +3,35 @@ $script_mode = TRUE;
 include('../init.php');
 
 if (php_sapi_name() == 'cli') {
-    $in = '';
-    $fh = fopen('php://stdin', 'r');
-    if (!$fh) {
-        die('Could not get file handle.');
-    }
+    $script_mode = 1;
+    $longopts = array(
+        'hostname:', 'id:', 'attr_id:', 'attr_name:', 'attr_value:'
+    );
 
-    while (($line = fgetc($fh)) !== FALSE) {
-        $in .= $line;
-    }
-
-    fclose($fh);
-
-    $attrs = array();
-    foreach (explode(',', rtrim($in)) as $in_attr) {
-        $attr = explode('=', $in_attr);
-        $attrs[$attr[0]] = $attr[1];
-    }
+    $params = getopt('', $longopts);
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $attrs = $_POST;
+    $params = $_POST;
 } else {
     die('Invalid request');
 }
 
-if (!isset($attrs['hostname']) or
-    !(isset($attrs['attr_name']) or isset($attrs['attr_id'])) or
-    !isset($attrs['attr_value'])) {
+if (!isset($params['hostname']) or
+    !(isset($params['attr_name']) or isset($params['attr_id'])) or
+    !isset($params['attr_value'])) {
         die('Missing parameters');
 }
 
-$hostname = $attrs['hostname'];
-if (!isset($attrs['attr_id'])) {
-    $attr_name = $attrs['attr_name'];
+$hostname = $params['hostname'];
+if (!isset($params['attr_id'])) {
+    $attr_name = $params['attr_name'];
     if (($attr_id = RackNews\ObjectUtils::get_attr_id($attr_name)) === FALSE) {
         die("$attr_name is not a valid attribute.");
     }
 } else {
-    $attr_id = $attrs['attr_id'];
+    $attr_id = $params['attr_id'];
 }
 
-$attr_value = $attrs['attr_value'];
+$attr_value = $params['attr_value'];
 
 update_attr($hostname, $attr_id, $attr_value);
 
