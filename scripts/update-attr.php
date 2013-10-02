@@ -5,7 +5,7 @@ include('../init.php');
 if (php_sapi_name() == 'cli') {
     $script_mode = 1;
     $longopts = array(
-        'hostname:', 'id:', 'attr_id:', 'attr_name:', 'attr_value:'
+        'lookup', 'hostname:', 'id:', 'attr_id:', 'attr_name:', 'attr_value:'
     );
 
     $params = getopt('', $longopts);
@@ -15,17 +15,34 @@ if (php_sapi_name() == 'cli') {
     die('Invalid request');
 }
 
+if (isset($params['lookup'])) {
+    if (isset($params['attr_id'])) {
+        ;
+    } elseif (isset($params['attr_name'])) {
+        $attr_name = $params['attr_name'];
+        if (($attr_id = RackNews\ObjectUtils::get_attr_id($attr_name)) === FALSE) {
+            die("$attr_name is not a valid attribute.\n");
+        } else {
+            echo "$attr_name = $attr_id\n";
+        }
+    } else {
+        die("Missing parameters\n");
+    }
+
+    exit;
+}
+
 if (!isset($params['hostname']) or
     !(isset($params['attr_name']) or isset($params['attr_id'])) or
     !isset($params['attr_value'])) {
-        die('Missing parameters');
+        die("Missing parameters\n");
 }
 
 $hostname = $params['hostname'];
 if (!isset($params['attr_id'])) {
     $attr_name = $params['attr_name'];
     if (($attr_id = RackNews\ObjectUtils::get_attr_id($attr_name)) === FALSE) {
-        die("$attr_name is not a valid attribute.");
+        die("$attr_name is not a valid attribute.\n");
     }
 } else {
     $attr_id = $params['attr_id'];
