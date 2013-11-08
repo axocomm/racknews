@@ -363,6 +363,8 @@ class Report {
                     }
 
                     $value = $allocs;
+                } elseif ($field == 'HW type') {
+                    $value = str_replace('%GPASS%', ' ', $object[$field]);
                 } else {
                     $value = $object[$field];
                 }
