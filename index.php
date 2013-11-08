@@ -15,6 +15,7 @@
                         try {
                             $report->build();
                             $fields = $report->get_report_objects();
+                            sort($fields);
                         } catch (Exception $e) {
                             echo '<div class="well">' . $e->getMessage() . '</div>';
                         }
