@@ -65,6 +65,12 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="matching">Match String</label>
+                        <div class="controls">
+                            <input type="text" name="matching" placeholder="Match String">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="log">Log Matches</label>
                         <div class="controls">
                             <input type="text" name="log" placeholder="Log Matches">
