@@ -15,6 +15,7 @@
                         try {
                             $report->build();
                             $fields = $report->get_report_objects();
+                            sort($fields);
                         } catch (Exception $e) {
                             echo '<div class="well">' . $e->getMessage() . '</div>';
                         }
@@ -61,6 +62,12 @@
                         <label class="control-label" for="id">ID</label>
                         <div class="controls">
                             <input type="text" name="id" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="matching">Match String</label>
+                        <div class="controls">
+                            <input type="text" name="matching" placeholder="Match String">
                         </div>
                     </div>
                     <div class="control-group">
