@@ -167,15 +167,13 @@ class Report {
         }
 
         if (!empty($this->params['matching'])) {
-            $tmp_objects = array();
+            $found = $objects;
             foreach ($this->params['matching'] as $match_string) {
                 list($k, $v) = explode(':', $match_string);
-                if (($found = ObjectUtils::find_by_attr($objects, $k, $v)) !== FALSE) {
-                    $tmp_objects = array_merge($tmp_objects, $found);
-                }
+                $found = ObjectUtils::find_by_attr($found, $k, $v);
             }
 
-            $objects = $tmp_objects;
+            $objects = $found;
         }
 
         if (count($objects)) {
