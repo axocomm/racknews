@@ -168,9 +168,14 @@ class Report {
         }
 
         if (!empty($this->params['fields'])) {
+            $fields = $this->params['fields'];
+            if (!in_array('id', $this->params['fields'])) {
+                $fields[] = 'id';
+            }
+
             $tmp_objects = array();
             foreach ($objects as $object) {
-                $tmp_objects[] = self::pick_fields($object, $this->params['fields']);
+                $tmp_objects[] = self::pick_fields($object, $fields);
             }
 
             $objects = $tmp_objects;
@@ -250,13 +255,22 @@ class Report {
             <tbody>
                 <?php foreach ($this->report_objects as $object): ?>
                 <tr>
-                    <?php foreach ($this->params['fields'] as $field): ?>
-                    <?php if (is_array($object[$field])): ?>
-                    <td><?php echo Util::multi_implode($object[$field], ','); ?></td>
-                    <?php else: ?>
-                    <td><?php echo $object[$field]; ?></td>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php for ($i = 0; $i < count($this->params['fields']); $i++): ?>
+                    <?php $field = $this->params['fields'][$i]; ?>
+                    <td>
+                        <?php if ($i === 0): ?>
+                        <a href="../<?php echo makeHref(array('page' => 'object', 'object_id' => $object['id'])); ?>">
+                        <?php endif; ?>
+                        <?php if (is_array($object[$field])): ?>
+                        <?php echo Util::multi_implode($object[$field], ','); ?>
+                        <?php else: ?>
+                        <?php echo $object[$field]; ?>
+                        <?php endif; ?>
+                        <?php if ($i === 0): ?>
+                        </a>
+                        <?php endif; ?>
+                    </td>
+                    <?php endfor; ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
