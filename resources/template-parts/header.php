@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/styles.css">
         <link rel="stylesheet" href="<?php echo $rd; ?>/resources/css/bootstrap-responsive.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <title>RackNews</title>
     </head>
     <body>

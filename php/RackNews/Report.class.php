@@ -261,7 +261,6 @@ class Report {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="resources/js/bootstrap-sortable.js"></script>
 <?php
         include 'resources/template-parts/footer.php';
