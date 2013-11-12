@@ -17,11 +17,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="#">RackNews</a>
+                    <a class="brand" href="https://github.com/axocomm/racknews">RackNews</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li id="home"><a href="#">Home</a></li>
-                            <li id="documentation"><a href="doc">Documentation</a></li>
+                            <li id="home"><a href="<?php echo $rd; ?>">Home</a></li>
+                            <li id="documentation"><a href="<?php echo $rd; ?>/doc">Documentation</a></li>
                         </ul>
                     </div>
                 </div>
