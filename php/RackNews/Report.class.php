@@ -243,8 +243,9 @@ class Report {
     public function as_html() {
         include 'resources/template-parts/header.php';
 ?>
+        <link rel="stylesheet" href="resources/css/bootstrap-sortable.css">
         <h3>RackNews Report</h3>
-        <table class="table table-striped table-condensed table-bordered table-hover" id="report-table">
+        <table class="table table-striped table-condensed table-bordered table-hover sortable" id="report-table">
             <thead>
                 <tr>
                     <?php foreach ($this->params['fields'] as $field): ?>
@@ -260,6 +261,8 @@ class Report {
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="resources/js/bootstrap-sortable.js"></script>
 <?php
         include 'resources/template-parts/footer.php';
     }
