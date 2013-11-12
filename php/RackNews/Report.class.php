@@ -107,6 +107,16 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (!empty($this->params['matching'])) {
+            $found = $objects;
+            foreach ($this->params['matching'] as $match_string) {
+                list($k, $v) = explode(':', $match_string);
+                $found = ObjectUtils::find_by_attr($found, $k, $v);
+            }
+
+            $objects = $found;
+        }
+
         if (!empty($this->params['types'])) {
             $tmp_objects = array();
             foreach ($this->params['types'] as $type) {
@@ -164,16 +174,6 @@ class Report {
             }
 
             $objects = $tmp_objects;
-        }
-
-        if (!empty($this->params['matching'])) {
-            $found = $objects;
-            foreach ($this->params['matching'] as $match_string) {
-                list($k, $v) = explode(':', $match_string);
-                $found = ObjectUtils::find_by_attr($found, $k, $v);
-            }
-
-            $objects = $found;
         }
 
         if (count($objects)) {
