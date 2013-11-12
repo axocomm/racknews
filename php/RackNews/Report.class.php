@@ -107,6 +107,16 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (!empty($this->params['matching'])) {
+            $found = $objects;
+            foreach ($this->params['matching'] as $match_string) {
+                list($k, $v) = explode(':', $match_string);
+                $found = ObjectUtils::find_by_attr($found, $k, $v);
+            }
+
+            $objects = $found;
+        }
+
         if (!empty($this->params['types'])) {
             $tmp_objects = array();
             foreach ($this->params['types'] as $type) {
@@ -158,22 +168,17 @@ class Report {
         }
 
         if (!empty($this->params['fields'])) {
+            $fields = $this->params['fields'];
+            if (!in_array('id', $this->params['fields'])) {
+                $fields[] = 'id';
+            }
+
             $tmp_objects = array();
             foreach ($objects as $object) {
-                $tmp_objects[] = self::pick_fields($object, $this->params['fields']);
+                $tmp_objects[] = self::pick_fields($object, $fields);
             }
 
             $objects = $tmp_objects;
-        }
-
-        if (!empty($this->params['matching'])) {
-            $found = $objects;
-            foreach ($this->params['matching'] as $match_string) {
-                list($k, $v) = explode(':', $match_string);
-                $found = ObjectUtils::find_by_attr($found, $k, $v);
-            }
-
-            $objects = $found;
         }
 
         if (count($objects)) {
@@ -250,19 +255,33 @@ class Report {
             <tbody>
                 <?php foreach ($this->report_objects as $object): ?>
                 <tr>
-                    <?php foreach ($this->params['fields'] as $field): ?>
-                    <?php if (is_array($object[$field])): ?>
-                    <td><?php echo Util::multi_implode($object[$field], ','); ?></td>
-                    <?php else: ?>
-                    <td><?php echo $object[$field]; ?></td>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php $this->do_row($object); ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 <?php
         include 'resources/template-parts/footer.php';
+    }
+
+    /**
+     * Format this object's row.
+     *
+     * Creates a link to the object in the first column and implodes any arrays with commas
+     *
+     * @param $object the object
+     */
+    private function do_row($object) {
+        foreach ($this->params['fields'] as $field) {
+            $a = $field === reset($this->params['fields']);
+            $field = $object[$field];
+            $cell = (is_array($field)) ? Util::multi_implode($field, ',') : $field;
+            if ($a) {
+                $cell = '<a href="' . '../' . makeHref(array('page' => 'object', 'object_id' => $object['id'])) . '">' . $cell . '</a>';
+            }
+
+            echo "<td>$cell</td>";
+        }
     }
 
     /**
