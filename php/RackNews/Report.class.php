@@ -255,28 +255,33 @@ class Report {
             <tbody>
                 <?php foreach ($this->report_objects as $object): ?>
                 <tr>
-                    <?php for ($i = 0; $i < count($this->params['fields']); $i++): ?>
-                    <?php $field = $this->params['fields'][$i]; ?>
-                    <td>
-                        <?php if ($i === 0): ?>
-                        <a href="../<?php echo makeHref(array('page' => 'object', 'object_id' => $object['id'])); ?>">
-                        <?php endif; ?>
-                        <?php if (is_array($object[$field])): ?>
-                        <?php echo Util::multi_implode($object[$field], ','); ?>
-                        <?php else: ?>
-                        <?php echo $object[$field]; ?>
-                        <?php endif; ?>
-                        <?php if ($i === 0): ?>
-                        </a>
-                        <?php endif; ?>
-                    </td>
-                    <?php endfor; ?>
+                    <?php $this->do_row($object); ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 <?php
         include 'resources/template-parts/footer.php';
+    }
+
+    /**
+     * Format this object's row.
+     *
+     * Creates a link to the object in the first column and implodes any arrays with commas
+     *
+     * @param $object the object
+     */
+    private function do_row($object) {
+        foreach ($this->params['fields'] as $field) {
+            $a = $field === reset($this->params['fields']);
+            $field = $object[$field];
+            $cell = (is_array($field)) ? Util::multi_implode($field, ',') : $field;
+            if ($a) {
+                $cell = '<a href="' . '../' . makeHref(array('page' => 'object', 'object_id' => $object['id'])) . '">' . $cell . '</a>';
+            }
+
+            echo "<td>$cell</td>";
+        }
     }
 
     /**
