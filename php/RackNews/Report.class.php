@@ -169,7 +169,7 @@ class Report {
 
         if (!empty($this->params['fields'])) {
             $fields = $this->params['fields'];
-            if (!in_array('id', $this->params['fields'])) {
+            if ($this->params['format'][0] === 'html' && !in_array('id', $this->params['fields'])) {
                 $fields[] = 'id';
             }
 
