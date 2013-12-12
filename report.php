@@ -9,7 +9,6 @@ use \RackNews\ObjectUtils as ObjectUtils;
 
 $report = new Report(ObjectUtils::get_objects());
 if (php_sapi_name() === 'cli') {
-    $script_mode = 1;
     $longopts = array(
         'report:', 'has:', 'types:', 'names:',
         'id:', 'log:', 'comment:', 'fields:',
