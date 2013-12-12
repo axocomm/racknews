@@ -65,9 +65,15 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="matching">Match String</label>
+                        <label class="control-label" for="and">Match All</label>
                         <div class="controls">
-                            <input type="text" name="matching" placeholder="Match String">
+                            <input type="text" name="and" placeholder="Match All">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="or">Match Any</label>
+                        <div class="controls">
+                            <input type="text" name="or" placeholder="Match Any">
                         </div>
                     </div>
                     <div class="control-group">
