@@ -121,9 +121,11 @@ class Report {
             $found = array();
             foreach ($this->params['or'] as $or_string) {
                 list($k, $v) = explode(':', $or_string);
-                foreach (ObjectUtils::find_by_attr($objects, $k, $v) as $matching) {
-                    if (!ObjectUtils::find_by_name($found, $matching['name'])) {
-                        $found[] = $matching;
+                if (($attr_matches = ObjectUtils::find_by_attr($objects, $k, $v)) !== FALSE) {
+                    foreach ($attr_matches as $attr_match) {
+                        if (!ObjectUtils::find_by_name($found, $attr_match['name'])) {
+                            $found[] = $attr_match;
+                        }
                     }
                 }
             }
