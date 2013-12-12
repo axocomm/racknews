@@ -117,6 +117,20 @@ class Report {
             $objects = $found;
         }
 
+        if (!empty($this->params['or'])) {
+            $found = array();
+            foreach ($this->params['or'] as $or_string) {
+                list($k, $v) = explode(':', $or_string);
+                foreach (ObjectUtils::find_by_attr($objects, $k, $v) as $matching) {
+                    if (!ObjectUtils::find_by_name($found, $matching['name'])) {
+                        $found[] = $matching;
+                    }
+                }
+            }
+
+            $objects = $found;
+        }
+
         if (!empty($this->params['types'])) {
             $tmp_objects = array();
             foreach ($this->params['types'] as $type) {
