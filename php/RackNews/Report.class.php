@@ -107,9 +107,9 @@ class Report {
             $objects = $tmp_objects;
         }
 
-        if (!empty($this->params['matching'])) {
+        if (!empty($this->params['and'])) {
             $found = $objects;
-            foreach ($this->params['matching'] as $match_string) {
+            foreach ($this->params['and'] as $match_string) {
                 list($k, $v) = explode(':', $match_string);
                 $found = ObjectUtils::find_by_attr($found, $k, $v);
             }
