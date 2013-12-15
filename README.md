@@ -82,12 +82,19 @@ A comma-separated list of fields to select from the objects list. For now these 
 	
 gets an array containing objects with their names, FQDNs, and IPv4 addresses.
 
-#### matching
+#### and
 A comma-separated list of matches to perform on objects' attributes (kind of works). For example:
 
-	report.php?matching=rack_id:4,has_problems:yes
+	report.php?and=rack_id:4,has_problems:yes
 	
 would get all objects with problems in the rack with ID 4.
+
+#### or
+Similarly, `or` gets objects satisfying any of the given matches. For example:
+
+	report.php?types=Server&or=Rack_name:Rack1,Rack_name:Rack2
+	
+would get servers that are in racks named "Rack 1" and "Rack 2".
 
 #### format
 The format in which data will be shown. The following are currently available:
