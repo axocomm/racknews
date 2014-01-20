@@ -5,7 +5,7 @@ include 'php/RackNews/Util.class.php';
 
 if (!isset($racktables_rootdir)) {
     $racktables_rootdir = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), '/'));
-    if ($script_mode or authenticate_rt()) {
+    if ((isset($script_mode) && $script_mode) or authenticate_rt()) {
         try {
             include("$racktables_rootdir/inc/init.php");
         } catch (Exception $e) {
