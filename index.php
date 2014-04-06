@@ -4,11 +4,11 @@ use \RackNews\Report as Report;
 use \RackNews\ObjectUtils as ObjectUtils;
 ?>
 <?php include 'resources/template-parts/header.php'; ?>
-            <form id="report-form" action="report.php" method="post">
+            <form role="form" id="report-form" action="report.php" method="post">
                 <fieldset>
                     <legend>Report Generation</legend>
-                    <div class="control-group">
-                        <label class="control-label" for="fields">Fields</label>
+                    <div class="form-group">
+                        <label for="fields">Fields</label>
                         <?php
                         $report = new Report(ObjectUtils::get_objects());
                         $params = array(
@@ -43,76 +43,56 @@ use \RackNews\ObjectUtils as ObjectUtils;
                                 <?php endforeach; ?>
                                 <tr>
                                     <td></td>
-                                    <td class="fields-check"><button type="button" class="btn" onclick="return clearCheckboxes('fields');">Clear</button></td>
-                                    <td class="has-check"><button type="button" class="btn" onclick="return clearCheckboxes('has');">Clear</button></td>
+                                    <td class="fields-check"><button type="button" class="btn btn-danger" onclick="return clearCheckboxes('fields');">Clear</button></td>
+                                    <td class="has-check"><button type="button" class="btn btn-danger" onclick="return clearCheckboxes('has');">Clear</button></td>
                                 </tr>
                             </tbody>
                         </table>
                         <?php endif; ?> 
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="report">Report</label>
-                        <div class="controls">
-                            <input type="text" name="report" placeholder="report">
-                        </div>
+                    <div class="form-group">
+                        <label for="report">Report</label>
+                        <input type="text" class="form-control" name="report" placeholder="report">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="names">Names</label>
-                        <div class="controls">
-                            <input type="text" name="names" placeholder="Names">
-                        </div>
+                    <div class="form-group">
+                        <label for="names">Names</label>
+                        <input type="text" class="form-control" name="names" placeholder="Names">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="id">ID</label>
-                        <div class="controls">
-                            <input type="text" name="id" placeholder="ID">
-                        </div>
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" name="id" placeholder="ID">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="and">Match All</label>
-                        <div class="controls">
-                            <input type="text" name="and" placeholder="Match All">
-                        </div>
+                    <div class="form-group">
+                        <label for="and">Match All</label>
+                        <input type="text" class="form-control" name="and" placeholder="Match All">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="or">Match Any</label>
-                        <div class="controls">
-                            <input type="text" name="or" placeholder="Match Any">
-                        </div>
+                    <div class="form-group">
+                        <label for="or">Match Any</label>
+                        <input type="text" class="form-control" name="or" placeholder="Match Any">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="log">Log Matches</label>
-                        <div class="controls">
-                            <input type="text" name="log" placeholder="Log Matches">
-                        </div>
+                    <div class="form-group">
+                        <label for="log">Log Matches</label>
+                        <input type="text" class="form-control" name="log" placeholder="Log Matches">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="comment">Comment Matches</label>
-                        <div class="controls">
-                            <input type="text" name="comment" placeholder="Comment Matches">
-                        </div>
+                    <div class="form-group">
+                        <label for="comment">Comment Matches</label>
+                        <input type="text" class="form-control" name="comment" placeholder="Comment Matches">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="types">Types</label>
-                        <div class="controls">
-                            <input type="text" name="types" placeholder="Types">
-                        </div>
+                    <div class="form-group">
+                        <label for="types">Types</label>
+                        <input type="text" class="form-control" name="types" placeholder="Types">
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="format">Format</label>
-                        <div class="controls">
-                            <select name="format">
-                                <option value="html">HTML</option>
-                                <option value="json">JSON</option>
-                                <option value="csv">CSV</option>
-                                <option value="xml">XML</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="format">Format</label>
+                        <select class="form-control" name="format">
+                            <option value="html">HTML</option>
+                            <option value="json">JSON</option>
+                            <option value="csv">CSV</option>
+                            <option value="xml">XML</option>
+                        </select>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button id="submit" type="submit" class="btn btn-primary">Report</button>
-                        </div>
+                    <div class="form-group">
+                        <button id="submit" type="submit" class="btn btn-primary">Report</button>
                     </div>
                 </fieldset>
             </form>
