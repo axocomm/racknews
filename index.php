@@ -54,7 +54,7 @@ use \RackNews\ObjectUtils as ObjectUtils;
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="report">Report</label>
-                                <input type="text" class="form-control" name="report" placeholder="report">
+                                <input type="text" class="form-control" name="report" placeholder="Report">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="names">Names</label>
