@@ -2,9 +2,11 @@ body {
     padding-top: 60px;
 }
 
-#report-form input[type="text"],
-#report-form select {
-    width: auto;
+@media screen and (min-width: 480px) {
+    #report-form input[type="text"],
+    #report-form select {
+        width: auto;
+    }
 }
 
 a {
