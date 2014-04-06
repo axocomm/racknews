@@ -11,16 +11,16 @@
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <div class="container">
+                <div class="navbar-inner">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="https://github.com/axocomm/racknews">RackNews</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
+                    <a class="navbar-brand" href="https://github.com/axocomm/racknews">RackNews</a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
                             <li id="home"><a href="<?php echo $rd; ?>">Home</a></li>
                             <li id="documentation"><a href="<?php echo $rd; ?>/doc">Documentation</a></li>
                         </ul>
