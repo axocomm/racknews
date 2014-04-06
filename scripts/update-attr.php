@@ -1,26 +1,26 @@
 <?php
-$script_mode = TRUE;
-include('../init.php');
-
-if (php_sapi_name() == 'cli') {
+if (php_sapi_name() === 'cli') {
     $script_mode = 1;
     $longopts = array(
         'lookup', 'hostname:', 'id:', 'attr_id:', 'attr_name:', 'attr_value:'
     );
 
     $params = getopt('', $longopts);
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $params = $_POST;
 } else {
     die('Invalid request');
 }
+
+include('../init.php');
+use RackNews\ObjectUtils as ObjectUtils;
 
 if (isset($params['lookup'])) {
     if (isset($params['attr_id'])) {
         ;
     } elseif (isset($params['attr_name'])) {
         $attr_name = $params['attr_name'];
-        if (($attr_id = RackNews\ObjectUtils::get_attr_id($attr_name)) === FALSE) {
+        if (($attr_id = ObjectUtils::get_attr_id($attr_name)) === FALSE) {
             die("$attr_name is not a valid attribute.\n");
         } else {
             echo "$attr_name = $attr_id\n";
@@ -41,7 +41,7 @@ if (!isset($params['hostname']) or
 $hostname = $params['hostname'];
 if (!isset($params['attr_id'])) {
     $attr_name = $params['attr_name'];
-    if (($attr_id = RackNews\ObjectUtils::get_attr_id($attr_name)) === FALSE) {
+    if (($attr_id = ObjectUtils::get_attr_id($attr_name)) === FALSE) {
         die("$attr_name is not a valid attribute.\n");
     }
 } else {
@@ -53,8 +53,8 @@ $attr_value = $params['attr_value'];
 update_attr($hostname, $attr_id, $attr_value);
 
 function update_attr($hostname, $attr_id, $attr_value) {
-    $objects = RackNews\ObjectUtils::get_objects();
-    if (!$object = RackNews\ObjectUtils::find_by_name($objects, $hostname)) {
+    $objects = ObjectUtils::get_objects();
+    if (!$object = ObjectUtils::find_by_name($objects, $hostname)) {
         die("$hostname does not exist.");
     }
 
@@ -79,7 +79,7 @@ function check_host($object, $attr_id) {
     }
 
     foreach ($attr_types['application'] as $type) {
-        if ($type['objtype_id'] == $host_type) {
+        if ($type['objtype_id'] === $host_type) {
             return 1;
         }
     }
