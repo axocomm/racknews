@@ -1,4 +1,8 @@
 <?php include 'init.php'; ?>
+<?php
+use \RackNews\Report as Report;
+use \RackNews\ObjectUtils as ObjectUtils;
+?>
 <?php include 'resources/template-parts/header.php'; ?>
             <form id="report-form" action="report.php" method="post">
                 <fieldset>
@@ -6,7 +10,7 @@
                     <div class="control-group">
                         <label class="control-label" for="fields">Fields</label>
                         <?php
-                        $report = new \RackNews\Report(\RackNews\ObjectUtils::get_objects());
+                        $report = new Report(ObjectUtils::get_objects());
                         $params = array(
                             'report' => 'fields'
                         );
@@ -107,7 +111,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <input class="btn btn-primary" type="submit" value="Report">
+                            <button id="submit" type="submit" class="btn btn-primary">Report</button>
                         </div>
                     </div>
                 </fieldset>
