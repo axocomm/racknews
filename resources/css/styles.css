@@ -2,6 +2,11 @@ body {
     padding-top: 60px;
 }
 
+#report-form input[type="text"],
+#report-form select {
+    width: auto;
+}
+
 a {
     transition: .2s;
     -moz-transition: .2s;
