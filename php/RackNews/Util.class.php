@@ -90,14 +90,16 @@ class Util {
         foreach ($arr as $k => $v) {
             if (is_array($v)) {
                 if (!is_numeric($k)) {
-                    $subnode = $xml->addChild($k);
+                    $subnode = $xml->addChild('field');
+                    $subnode->addAttribute('name', $k);
                     self::array_to_xml($v, $subnode);
                 } else {
                     $subnode = $xml->addChild('object');
                     self::array_to_xml($v, $subnode);
                 }
             } else {
-                $xml->addChild($k, $v);
+                $subnode = $xml->addChild('field', $v);
+                $subnode->addAttribute('name', $k);
             }
         }
     }
