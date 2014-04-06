@@ -1,3 +1,18 @@
+$(document).ready(function() {
+    $('#report-form').submit(function() {
+        if (!checkFormInputs($('#report-form'))) {
+            alert('Please select at least one field to display.');
+            return false;
+        }
+    
+        return true;
+    });
+});
+
+function checkFormInputs(form) {
+    return form.find('input[name="fields[]"]:checked').length > 0;
+}
+
 function getFormData() {
     var query = [];
     var formData = $('#report-form input:not([type="checkbox"])').serializeArray();
