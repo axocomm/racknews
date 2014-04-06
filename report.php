@@ -3,7 +3,7 @@ if (php_sapi_name() === 'cli') {
     $script_mode = TRUE;
 }
 
-include 'init.php';
+require('init.php');
 use \RackNews\Report as Report;
 use \RackNews\ObjectUtils as ObjectUtils;
 

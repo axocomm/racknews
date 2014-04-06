@@ -257,7 +257,7 @@ class Report {
      * Uses template-parts in resources/ for styles
      */
     public function as_html() {
-        include 'resources/template-parts/header.php';
+        include('resources/template-parts/header.php');
 ?>
         <link rel="stylesheet" href="resources/css/bootstrap-sortable.css">
         <h3>RackNews Report</h3>
@@ -279,7 +279,7 @@ class Report {
         </table>
         <script src="resources/js/bootstrap-sortable.js"></script>
 <?php
-        include 'resources/template-parts/footer.php';
+        include('resources/template-parts/footer.php');
     }
 
     /**

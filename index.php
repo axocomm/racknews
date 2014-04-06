@@ -1,9 +1,9 @@
-<?php include 'init.php'; ?>
+<?php require('init.php'); ?>
 <?php
 use \RackNews\Report as Report;
 use \RackNews\ObjectUtils as ObjectUtils;
 ?>
-<?php include 'resources/template-parts/header.php'; ?>
+<?php include('resources/template-parts/header.php'); ?>
             <form role="form" id="report-form" action="report.php" method="post">
                 <fieldset>
                     <legend>Report Generation</legend>
@@ -119,4 +119,4 @@ use \RackNews\ObjectUtils as ObjectUtils;
                 </div>
             </div>
             <script src="resources/js/create-form.js"></script>
-<?php include 'resources/template-parts/footer.php'; ?>
+<?php include('resources/template-parts/footer.php'); ?>
