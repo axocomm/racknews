@@ -97,17 +97,21 @@ use \RackNews\ObjectUtils as ObjectUtils;
                 </fieldset>
             </form>
             <button onclick="getFormData();" class="btn">Query String</button>
-            <div class="modal hide fade" id="query-string-modal">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3>Query String</h3>
-                </div>
-                <div class="modal-body">
-                    <p>Generated query string:</p>
-                    <code id="query-string"></code>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+            <div class="modal fade" id="query-string-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Query String</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Generated query string:</p>
+                            <code id="query-string"></code>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <script src="resources/js/create-form.js"></script>
