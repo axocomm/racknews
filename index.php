@@ -50,46 +50,50 @@ use \RackNews\ObjectUtils as ObjectUtils;
                         </table>
                         <?php endif; ?> 
                     </div>
-                    <div class="form-group">
-                        <label for="report">Report</label>
-                        <input type="text" class="form-control" name="report" placeholder="report">
-                    </div>
-                    <div class="form-group">
-                        <label for="names">Names</label>
-                        <input type="text" class="form-control" name="names" placeholder="Names">
-                    </div>
-                    <div class="form-group">
-                        <label for="id">ID</label>
-                        <input type="text" class="form-control" name="id" placeholder="ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="and">Match All</label>
-                        <input type="text" class="form-control" name="and" placeholder="Match All">
-                    </div>
-                    <div class="form-group">
-                        <label for="or">Match Any</label>
-                        <input type="text" class="form-control" name="or" placeholder="Match Any">
-                    </div>
-                    <div class="form-group">
-                        <label for="log">Log Matches</label>
-                        <input type="text" class="form-control" name="log" placeholder="Log Matches">
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">Comment Matches</label>
-                        <input type="text" class="form-control" name="comment" placeholder="Comment Matches">
-                    </div>
-                    <div class="form-group">
-                        <label for="types">Types</label>
-                        <input type="text" class="form-control" name="types" placeholder="Types">
-                    </div>
-                    <div class="form-group">
-                        <label for="format">Format</label>
-                        <select class="form-control" name="format">
-                            <option value="html">HTML</option>
-                            <option value="json">JSON</option>
-                            <option value="csv">CSV</option>
-                            <option value="xml">XML</option>
-                        </select>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="report">Report</label>
+                                <input type="text" class="form-control" name="report" placeholder="report">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="names">Names</label>
+                                <input type="text" class="form-control" name="names" placeholder="Names">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control" name="id" placeholder="ID">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="and">Match All</label>
+                                <input type="text" class="form-control" name="and" placeholder="Match All">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="or">Match Any</label>
+                                <input type="text" class="form-control" name="or" placeholder="Match Any">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="log">Log Matches</label>
+                                <input type="text" class="form-control" name="log" placeholder="Log Matches">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="comment">Comment Matches</label>
+                                <input type="text" class="form-control" name="comment" placeholder="Comment Matches">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="types">Types</label>
+                                <input type="text" class="form-control" name="types" placeholder="Types">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="format">Format</label>
+                                <select class="form-control" name="format">
+                                    <option value="html">HTML</option>
+                                    <option value="json">JSON</option>
+                                    <option value="csv">CSV</option>
+                                    <option value="xml">XML</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button id="submit" type="submit" class="btn btn-primary">Report</button>
