@@ -24,3 +24,11 @@ a {
     -o-transition: .2s;
     -webkit-transition: .2s;
 }
+
+footer {
+    padding-bottom: 40px;
+    padding-top: 40px;
+    margin-top: 60px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
