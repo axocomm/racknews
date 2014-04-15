@@ -329,7 +329,7 @@ class Report {
      * @param string $report the report type
      */
     private function pre_build($objects, $report) {
-        switch (strtolower($this->params['report'])) {
+        switch (strtolower($report)) {
         case 'fields':
             $objects = ObjectUtils::get_fields($objects);
             break;
@@ -421,4 +421,3 @@ class Report {
 
         return $out;
     }
-}
