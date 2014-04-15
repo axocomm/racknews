@@ -421,3 +421,4 @@ class Report {
 
         return $out;
     }
+}
