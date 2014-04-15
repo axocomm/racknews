@@ -6,7 +6,7 @@ use \RackNews\ObjectUtils as ObjectUtils;
 <?php include('resources/template-parts/header.php'); ?>
             <form role="form" id="report-form" action="report.php" method="post">
                 <fieldset>
-                    <legend>Report Generation</legend>
+                    <legend>Create a Report</legend>
                     <div class="form-group">
                         <label for="fields">Fields</label>
                         <?php
