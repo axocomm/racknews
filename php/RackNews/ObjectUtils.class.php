@@ -15,7 +15,7 @@ class ObjectUtils {
     /**
      * Get all objects stored in RackTables.
      *
-     * @return an associative array of objects
+     * @return array an associative array of objects
      */
     public static function get_objects() {
         $rt_objects = scanRealmByText('object');
@@ -44,9 +44,10 @@ class ObjectUtils {
     /**
      * Find an object by its name.
      *
-     * @param $objects the objects to search
-     * @param $name the name to find
-     * @return the object that has the given name, FALSE otherwise
+     * @param  array  $objects the objects to search
+     * @param  string $name    the name to find
+     *
+     * @return object the object that has the given name, FALSE otherwise
      */
     public static function find_by_name($objects, $name) {
         foreach ($objects as $object) {
@@ -61,9 +62,10 @@ class ObjectUtils {
     /**
      * Find an object by its ID.
      *
-     * @param $objects the objects to search
-     * @param the ID to find
-     * @return the object that has the given name, FALSE otherwise
+     * @param array $objects the objects to search
+     * @param int   $id      the ID to find
+     *
+     * @return object the object that has the given name, FALSE otherwise
      */
     public static function find_by_id($objects, $id) {
         foreach ($objects as $object) {
@@ -78,9 +80,10 @@ class ObjectUtils {
     /**
      * Find an object by its fully qualified domain name.
      *
-     * @param $objects the objects to search
-     * @param the FQDN to find
-     * @return the object that has the given name, FALSE otherwise
+     * @param array  $objects the objects to search
+     * @param string $fqdn    the FQDN to find
+     *
+     * @return object the object that has the given name, FALSE otherwise
      */
     public static function find_by_fqdn($objects, $fqdn) {
         foreach ($objects as $object) {
@@ -95,10 +98,11 @@ class ObjectUtils {
     /**
      * Find objects that match the given attribute.
      *
-     * @param $objects the objects to search
-     * @param $k the key to match
-     * @param $v the value it should have
-     * @return an array of matching objects, FALSE otherwise
+     * @param array  $objects the objects to search
+     * @param string $k       the key to match
+     * @param string $v       the value it should have
+     *
+     * @return array the matching objects, FALSE otherwise
      */
     public static function find_by_attr($objects, $k, $v) {
         $matches = array();
@@ -114,9 +118,10 @@ class ObjectUtils {
     /**
      * Find objects of the given type name.
      *
-     * @param $objects the objects to search
-     * @param $type_name the name of the type
-     * @return an array of objects of the given type name
+     * @param array  $objects   the objects to search
+     * @param string $type_name the name of the type
+     *
+     * @return array the objects of the given type name
      */
     public static function find_by_type($objects, $type_name) {
         $out = array();
@@ -142,9 +147,10 @@ class ObjectUtils {
     /**
      * Find objects by a list of tags.
      *
-     * @param $objects the objects to search
-     * @param $tags an array of tags
-     * @return an array of objects with the given tags (atags/etags), FALSE otherwise
+     * @param array $objects the objects to search
+     * @param array $tags    the tags
+     *
+     * @return array the objects with the given atags/etags, FALSE otherwise
      */
     public static function find_by_tags($objects, $tags) {
         $out = array();
@@ -175,10 +181,11 @@ class ObjectUtils {
     /**
      * Find objects by log query.
      *
-     * @param $objects the objects to search
-     * @param $records the log records
-     * @param $query the log search term
-     * @return an array of objects that have the given log query, FALSE otherwise
+     * @param array  $objects the objects to search
+     * @param array  $records the log records
+     * @param string $query   the log search term
+     *
+     * @return array the objects that have the given log query, FALSE otherwise
      */
     public static function find_by_log_query($objects, $records, $query) {
         $matches = array();
@@ -207,9 +214,10 @@ class ObjectUtils {
     /**
      * Find objects by comment.
      *
-     * @param $objects the objects to search
-     * @param $query the comment to find
-     * @return an array of objects that have the given comment, FALSE otherwise
+     * @param  array  $objects the objects to search
+     * @param  string $query   the comment to find
+     *
+     * @return array the objects that have the given comment, FALSE otherwise
      */
     public static function find_by_comment($objects, $query) {
         $matches = array();
@@ -225,62 +233,66 @@ class ObjectUtils {
     /**
      * Determine if the given object has a MAC address registered.
      *
-     * @param $object the object to test
-     * @return if the object has a MAC/l2address entered for an interface
+     * @param object $object the object to test
+     *
+     * @return bool if the object has a l2address entered for an interface
      */
     public static function has_mac($object) {
         if (count($object['ports'])) {
             foreach ($object['ports'] as $port) {
                 if ((isset($port['l2address']) && strlen($port['l2address']))) {
-                    return 1;
+                    return TRUE;
                 }
             }
         }
 
-        return 0;
+        return FALSE;
     }
 
     /**
      * Determine if the given object has these fields set and populated.
      *
-     * @param $object the object to test
-     * @param $fields an array of fields to check
-     * @return if each of the given fields has a value in the object
+     * @param object $object the object to test
+     * @param array  $fields the fields to check
+     *
+     * @return bool if each of the given fields has a value in the object
      */
     public static function check_fields($object, $fields) {
         foreach ($fields as $field) {
             if (!self::has_field($object, $field)) {
-                return 0;
+                return FALSE;
             }
         }
 
-        return 1;
+        return TRUE;
     }
 
     /**
      * Determine if the given object has this field set and populated.
      *
-     * @param $object the object to test
-     * @param $field the field to check
-     * @return if this field is set and has a value
+     * @param object $object the object to test
+     * @param string $field  the field to check
+     *
+     * @return bool if this field is set and has a value
      */
     public static function has_field($object, $field) {
         if (isset($object[$field]) && ($v = $object[$field]) !== FALSE) {
             if (is_array($v)) {
-                return count($v);
+                return count($v) > 0;
             } else {
-                return strlen($v);
+                return strlen($v) > 0;
             }
         }
 
-        return 0;
+        return FALSE;
     }
 
     /**
      * Get an array of fields present in all objects.
      *
-     * @param $objects the objects to search
-     * @return an array of fields common to these objects
+     * @param array $objects the objects to search
+     *
+     * @return array the fields common to these objects
      */
     public static function get_fields($objects) {
         if (!count($objects)) {
@@ -306,8 +318,9 @@ class ObjectUtils {
     /**
      * Get the attribute ID that corresponds to this attribute name.
      *
-     * @param $attr_name the name of the attribute
-     * @return the ID of this attribute, FALSE if it does not exist.
+     * @param string $attr_name the name of the attribute
+     *
+     * @return integer the ID of this attribute, FALSE if it does not exist.
      */
     public static function get_attr_id($attr_name) {
         $map = getAttrMap();

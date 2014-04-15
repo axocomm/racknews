@@ -15,7 +15,7 @@ class Util {
     /**
      * Get the IPv4 addresses.
      *
-     * @return an array of all IPv4 addresses and associated object names
+     * @return array all IPv4 addresses and associated object names
      */
     public static function get_addrs() {
         $rt_nets = scanRealmByText('ipv4net');
@@ -39,8 +39,9 @@ class Util {
     /**
      * Get IP address allocations.
      *
-     * @param $objects the objects to use
-     * @return an array containing IPs and their allocations
+     * @param array $objects the objects to use
+     *
+     * @return array IPs and their allocations
      */
     public static function get_allocs($objects) {
         $allocs = array();
@@ -60,9 +61,10 @@ class Util {
     /**
      * Recursively implode an array.
      *
-     * @param $pieces the pieces
-     * @param $glue the glue
-     * @return a string of the recursively imploded array
+     * @param array  $pieces the pieces
+     * @param string $glue   the glue
+     *
+     * @return string the recursively imploded array
      */
     public static function multi_implode($pieces, $glue) {
         $out = '';
@@ -83,8 +85,8 @@ class Util {
     /**
      * Convert (roughly) an associative array to XML and print.
      *
-     * @param $arr the array
-     * @param $xml a reference to the current XML object
+     * @param array             $arr the array to convert
+     * @param SimpleXMLElement& $xml a reference to the current XML object
      */
     public static function array_to_xml($arr, &$xml) {
         foreach ($arr as $k => $v) {
