@@ -370,7 +370,7 @@ class Report {
      * @param object $object the object to filter
      * @param array  $fields the fields to limit to
      *
-     * @return object a filtered object containing $fields fields only
+     * @return object a filtered object containing only fields in $fields
      */
     private static function pick_fields($object, $fields) {
         $out = array();
