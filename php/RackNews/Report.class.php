@@ -55,7 +55,7 @@ class Report {
     public function set_params($params) {
         $excludes = array('id', 'report');
         foreach ($params as $key => &$param) {
-            if (!empty($param) && 
+            if (!empty($param) &&
                (!(is_numeric($param) or is_array($param))) &&
                (!in_array($key, $excludes))) {
                 $param = explode(',', $param);
@@ -64,7 +64,7 @@ class Report {
 
         $this->params = $params;
     }
-    
+
     /**
      * Get the objects that will be used in this report.
      *
@@ -158,7 +158,7 @@ class Report {
                     $tmp_objects = array_merge($tmp_objects, $found);
                 }
             }
-            
+
             $objects = $tmp_objects;
         }
 
@@ -239,8 +239,10 @@ class Report {
                     $attr = Util::multi_implode($attr, ',');
                 }
             }
+
             fputcsv($buffer, $object);
         }
+
         fclose($buffer);
     }
 
@@ -295,7 +297,10 @@ class Report {
             $field = $object[$field];
             $cell = (is_array($field)) ? Util::multi_implode($field, ',') : $field;
             if ($a) {
-                $cell = '<a href="' . '../' . makeHref(array('page' => 'object', 'object_id' => $object['id'])) . '">' . $cell . '</a>';
+                $cell = '<a href="' . '../' . makeHref(array(
+                    'page'      => 'object',
+                    'object_id' => $object['id'])
+                ) . '">' . $cell . '</a>';
             }
 
             echo "<td>$cell</td>";
