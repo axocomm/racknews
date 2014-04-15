@@ -230,6 +230,8 @@ class Report {
      * Display this report as a CSV.
      */
     public function as_csv() {
+        header('Content-type: text/csv');
+        header('Content-disposition: attachment;filename=racknews-export.csv');
         echo implode(',', $this->params['fields']) . "\n";
         $buffer = fopen('php://output', 'w');
         $csv_objects = array_merge(array(), $this->report_objects);
@@ -250,6 +252,7 @@ class Report {
      * Display this report as JSON.
      */
     public function as_json() {
+        header('Content-type: application/json');
         echo json_encode($this->report_objects);
     }
 
@@ -313,6 +316,7 @@ class Report {
      * @see \RackNews\Util::array_to_xml
      */
     public function as_xml() {
+        header('Content-type: application/xml');
         $xml = new \SimpleXMLElement('<?xml version="1.0" ?><report></report>');
         Util::array_to_xml($this->report_objects, $xml);
         print $xml->asXML();
