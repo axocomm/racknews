@@ -136,7 +136,7 @@ class ObjectUtils {
             }
         }
 
-        return $out;
+        return count($out) ? $out : FALSE;
     }
 
     /**
@@ -169,11 +169,7 @@ class ObjectUtils {
             }
         }
 
-        if (count($out)) {
-            return $out;
-        } else {
-            return NULL;
-        }
+        return count($out) ? $out : FALSE;
     }
 
     /**
@@ -205,7 +201,7 @@ class ObjectUtils {
             }
         }
 
-        return $matches;
+        return count($matches) ? $matches : FALSE;
     }
 
     /**
@@ -223,7 +219,7 @@ class ObjectUtils {
             }
         }
 
-        return $matches;
+        return count($matches) ? $matches : FALSE;
     }
 
     /**
