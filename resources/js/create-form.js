@@ -37,7 +37,7 @@ function getFormData() {
     });
 
     if (has.length) {
-        query.push('matching=' + has.join(','));
+        query.push('has=' + has.join(','));
     }
 
     $('#report-form').find('select').each(function() {
