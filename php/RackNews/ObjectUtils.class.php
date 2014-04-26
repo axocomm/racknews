@@ -150,7 +150,7 @@ class ObjectUtils {
      * @param array $objects the objects to search
      * @param array $tags    the tags
      *
-     * @return array the objects with the given atags/etags, FALSE otherwise
+     * @return array the objects with the given atags/etags/itags, FALSE otherwise
      */
     public static function find_by_tags($objects, $tags) {
         $out = array();
@@ -167,6 +167,15 @@ class ObjectUtils {
 
                 if (!$found) {
                     foreach ($object['etags'] as $etag) {
+                        if ($etag['tag'] == $tag) {
+                            $out[] = $object;
+                            $found = 1;
+                        }
+                    }
+                }
+
+                if (!$found) {
+                    foreach ($object['itags'] as $etag) {
                         if ($etag['tag'] == $tag) {
                             $out[] = $object;
                         }
