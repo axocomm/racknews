@@ -153,36 +153,17 @@ class ObjectUtils {
      * @return array the objects with the given atags/etags/itags, FALSE otherwise
      */
     public static function find_by_tags($objects, $tags) {
-        $out = array();
+        $out = array_filter($objects, function($object) use ($tags) {
+            $atags = $object['atags'];
+            $etags = $object['etags'];
+            $itags = $object['itags'];
 
-        foreach ($objects as $object) {
-            foreach ($tags as $tag) {
-                $found = 0;
-                foreach ($object['atags'] as $atag) {
-                    if ($atag['tag'] == $tag) {
-                        $out[] = $object;
-                        $found = 1;
-                    }
-                }
+            $all_tags = array_map(function($tag) {
+                return $tag['tag'];
+            }, array_merge($atags, $etags, $itags));
 
-                if (!$found) {
-                    foreach ($object['etags'] as $etag) {
-                        if ($etag['tag'] == $tag) {
-                            $out[] = $object;
-                            $found = 1;
-                        }
-                    }
-                }
-
-                if (!$found) {
-                    foreach ($object['itags'] as $etag) {
-                        if ($etag['tag'] == $tag) {
-                            $out[] = $object;
-                        }
-                    }
-                }
-            }
-        }
+            return count(array_intersect($tags, $all_tags)) > 0;
+        });
 
         return count($out) ? $out : FALSE;
     }
