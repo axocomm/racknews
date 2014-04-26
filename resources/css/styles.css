@@ -32,3 +32,8 @@ footer {
     text-align: center;
     border-top: 1px solid #e5e5e5;
 }
+
+.modal-body code {
+    display: inline-block;
+    white-space: normal;
+}
