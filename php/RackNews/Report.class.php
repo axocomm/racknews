@@ -183,6 +183,10 @@ class Report {
             $objects = $tmp_objects;
         }
 
+        if (!empty($this->params['tags'])) {
+            $objects = ObjectUtils::find_by_tags($objects, $this->params['tags']);
+        }
+
         if (!empty($this->params['fields'])) {
             $fields = $this->params['fields'];
             if ($this->params['format'][0] === 'html' && !in_array('id', $this->params['fields'])) {
