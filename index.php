@@ -25,6 +25,7 @@ use \RackNews\ObjectUtils as ObjectUtils;
                         }
                         ?>
                         <?php if ($fields && count($fields)): ?>
+                        <?php natcasesort($fields); ?>
                         <table class="table table-striped table-condensed table-bordered table-hover" id="fields-table">
                             <thead>
                                 <tr>
@@ -36,9 +37,9 @@ use \RackNews\ObjectUtils as ObjectUtils;
                             <tbody>
                                 <?php foreach ($fields as $field): ?>
                                 <tr>
-                                    <td><?php echo $field['field']; ?></td>
-                                    <td class="fields-check"><input type="checkbox" name="fields[]" value="<?php echo $field['field']; ?>"></td>
-                                    <td class="has-check"><input type="checkbox" name="has[]" value="<?php echo $field['field']; ?>"></td>
+                                    <td><?php echo $field; ?></td>
+                                    <td class="fields-check"><input type="checkbox" name="fields[]" value="<?php echo $field; ?>"></td>
+                                    <td class="has-check"><input type="checkbox" name="has[]" value="<?php echo $field; ?>"></td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
