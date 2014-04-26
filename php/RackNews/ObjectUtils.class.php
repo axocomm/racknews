@@ -318,7 +318,7 @@ class ObjectUtils {
         $fields = array();
         $field_list = array_unique($field_list);
         foreach ($field_list as $field) {
-            $fields[]['field'] = $field;
+            $fields[] = $field;
         }
 
         return $fields;
