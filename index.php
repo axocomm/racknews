@@ -85,6 +85,10 @@ use \RackNews\ObjectUtils as ObjectUtils;
                                 <input type="text" class="form-control" name="types" placeholder="Types">
                             </div>
                             <div class="form-group col-md-4">
+                                <label for="tags">Tags</label>
+                                <input type="text" class="form-control" name="tags" placeholder="Tags">
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="format">Format</label>
                                 <select class="form-control" name="format">
                                     <option value="html">HTML</option>
