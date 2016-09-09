@@ -1,5 +1,7 @@
 # RackNews
 
+**Note:** this project is getting a much-needed rewrite and development has moved [here](https://github.com/axocomm/racknews2)!
+
 ## Overview
 
 **RackNews**, (possibly) the missing RackTables reports tool.
